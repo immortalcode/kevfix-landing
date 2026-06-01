@@ -336,6 +336,22 @@
       line-height: 1.45;
     }
 
+    .open-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .68rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 50px;
+      letter-spacing: .3px;
+    }
+    .open-badge.open   { background: rgba(34,197,94,.12); color: #16a34a; }
+    .open-badge.closed { background: rgba(239,68,68,.1);  color: #ef4444; }
+    .open-badge .dot {
+      width: 5px; height: 5px; border-radius: 50%; background: currentColor;
+    }
+
     .hours-grid {
       display: grid;
       grid-template-columns: auto 1fr;
@@ -764,11 +780,15 @@
             </svg>
           </div>
           <div class="info-content">
-            <div class="info-label">Hours</div>
+            <div class="info-label" style="display:flex;align-items:center;gap:8px;">
+              Hours
+              <span id="openBadge"></span>
+            </div>
             <div class="hours-grid">
               <span class="hours-day">Mon – Sat</span><span class="hours-time">10:00 AM – 7:00 PM</span>
               <span class="hours-day">Sunday</span><span class="hours-time closed">Closed</span>
             </div>
+            <p id="opensMsg" style="font-size:.78rem;color:var(--gray-500);margin-top:5px;display:none;"></p>
           </div>
         </div>
       </div>
@@ -995,6 +1015,38 @@
 
   rhEl.classList.add('fade-in');
   setInterval(rotateHeadline, 2600);
+
+  // ── OPEN / CLOSED BADGE ──
+  (function() {
+    const badge   = document.getElementById('openBadge');
+    const opensMsg = document.getElementById('opensMsg');
+    const now     = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+    const day     = now.getDay(); // 0=Sun,1=Mon...6=Sat
+    const hour    = now.getHours();
+    const minute  = now.getMinutes();
+    const mins    = hour * 60 + minute;
+    const open    = 10 * 60;   // 10:00 AM
+    const close   = 19 * 60;   // 7:00 PM
+    const isOpen  = day >= 1 && day <= 6 && mins >= open && mins < close;
+
+    badge.innerHTML = isOpen
+      ? `<span class="open-badge open"><span class="dot"></span>Open Now</span>`
+      : `<span class="open-badge closed"><span class="dot"></span>Closed</span>`;
+
+    if (!isOpen) {
+      // figure out next opening day
+      let nextDay = day;
+      let daysAhead = 0;
+      do {
+        daysAhead++;
+        nextDay = (day + daysAhead) % 7;
+      } while (nextDay === 0); // skip Sunday
+      const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+      const label = daysAhead === 1 ? 'tomorrow' : dayNames[nextDay];
+      opensMsg.textContent = `Opens ${label} at 10:00 AM`;
+      opensMsg.style.display = 'block';
+    }
+  })();
 
   // ── CLICK TRACKING ──
   document.querySelectorAll('[data-track]').forEach(el => {
