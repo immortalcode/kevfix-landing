@@ -79,7 +79,8 @@
       "Bash(curl -sL \"https://lh3.googleusercontent.com/gps-cs-s/APNQkAEUz7PxPb4GDLoK_KZp9MZf6LsEVW8HveLvSG_-R_NEJErYp38VHN8h4fES0pdfrJefLixffhxxc6YTVzsQKSSVMqh5Xx9ocauWh6JX5HZJ0afug6xQi2-k1ZSjRANdsPc9jXidUhGQRqAH=w1200-h900-k-no\" -o /Users/ohannesiskenderian/Desktop/KevFix-Landing/photos/photo-1.jpg)",
       "Bash(curl -sL \"https://lh3.googleusercontent.com/geougc/AF1QipMnkKZMhf7teXw0IqXeyU24kXDaihCrU6o3dF_X=w1200-h900-no\" -o /Users/ohannesiskenderian/Desktop/KevFix-Landing/photos/photo-2.jpg)",
       "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add photo gallery with storefront and repair photos\")",
-      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add all 11 business photos to gallery\")"
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add all 11 business photos to gallery\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add photo manager to admin: drag to reorder, toggle visibility, delete\")"
     ]
   }
 }

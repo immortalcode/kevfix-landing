@@ -272,6 +272,57 @@
 
     .skeleton .stat-number { background: #1f2937; color: transparent; border-radius: 6px; }
 
+    /* PHOTO MANAGER */
+    .save-photos-btn {
+      display: flex; align-items: center; gap: 6px;
+      background: #00a8e8; color: #fff; border: none;
+      font-size: .82rem; font-weight: 700; padding: 8px 16px;
+      border-radius: 50px; cursor: pointer; font-family: inherit;
+      transition: background .2s;
+    }
+    .save-photos-btn:hover { background: #0077b6; }
+    .save-photos-btn:disabled { opacity: .5; cursor: default; }
+
+    .photo-list { display: flex; flex-direction: column; gap: 8px; }
+
+    .photo-item {
+      display: flex; align-items: center; gap: 12px;
+      background: #111827; border: 1px solid #1f2937;
+      border-radius: 12px; padding: 10px 14px;
+      cursor: grab; user-select: none;
+      transition: opacity .2s, border-color .2s;
+    }
+    .photo-item.dragging { opacity: .4; border-color: #00a8e8; }
+    .photo-item.drag-over { border-color: #00a8e8; background: #0d1f35; }
+    .photo-item.hidden-photo { opacity: .45; }
+
+    .drag-handle {
+      color: #374151; flex-shrink: 0; cursor: grab;
+    }
+
+    .photo-thumb {
+      width: 52px; height: 40px; border-radius: 6px;
+      object-fit: cover; flex-shrink: 0;
+    }
+
+    .photo-name {
+      flex: 1; font-size: .8rem; color: #9ca3af;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    .photo-actions { display: flex; gap: 6px; flex-shrink: 0; }
+
+    .ph-btn {
+      width: 30px; height: 30px; border-radius: 8px;
+      border: 1.5px solid #1f2937; background: transparent;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: border-color .15s, color .15s;
+      color: #6b7280;
+    }
+    .ph-btn.vis:hover  { border-color: #00a8e8; color: #00a8e8; }
+    .ph-btn.del:hover  { border-color: #ef4444; color: #ef4444; }
+    .ph-btn.active-vis { color: #00a8e8; border-color: #00a8e8; }
+
     @media (max-width: 600px) {
       header { padding: 14px 16px; }
       .main { padding: 24px 14px; }
@@ -376,6 +427,20 @@
     </div>
 
     <p class="last-updated" id="lastUpdated"></p>
+
+    <!-- PHOTO MANAGER -->
+    <div style="margin-top:36px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px;">
+        <p class="section-title" style="margin:0">Photos</p>
+        <button class="save-photos-btn" id="savePhotosBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          Save Order
+        </button>
+      </div>
+      <p style="font-size:.78rem;color:#4b5563;margin-bottom:14px;">Drag to reorder · Toggle eye to show/hide · Trash to delete</p>
+      <div class="photo-list" id="photoList"></div>
+    </div>
+
   </div>
 </div>
 
@@ -427,6 +492,7 @@
       now.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
     if (data) renderStats(data);
     else loadStats();
+    loadPhotos();
   }
 
   async function loadStats() {
@@ -470,6 +536,86 @@
     modalConfirm.disabled = false;
     modalOverlay.classList.remove('open');
     if (res.ok) loadStats();
+  });
+
+  // ── PHOTO MANAGER ──
+  let photos = [];
+  let dragSrc = null;
+
+  async function loadPhotos() {
+    const res = await fetch('/api/photos');
+    const data = await res.json();
+    photos = data.photos || [];
+    renderPhotos();
+  }
+
+  function renderPhotos() {
+    const list = document.getElementById('photoList');
+    list.innerHTML = '';
+    photos.forEach((p, i) => {
+      const item = document.createElement('div');
+      item.className = 'photo-item' + (p.visible ? '' : ' hidden-photo');
+      item.draggable = true;
+      item.dataset.index = i;
+      item.innerHTML = `
+        <span class="drag-handle">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </span>
+        <img class="photo-thumb" src="/photos/${p.file}" alt="${p.alt}" />
+        <span class="photo-name">${p.file}</span>
+        <div class="photo-actions">
+          <button class="ph-btn vis ${p.visible ? 'active-vis' : ''}" title="${p.visible ? 'Hide' : 'Show'}">
+            ${p.visible
+              ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`
+              : `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`}
+          </button>
+          <button class="ph-btn del" title="Delete">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+          </button>
+        </div>`;
+
+      // toggle visibility
+      item.querySelector('.vis').addEventListener('click', () => {
+        photos[i].visible = !photos[i].visible;
+        renderPhotos();
+      });
+
+      // delete
+      item.querySelector('.del').addEventListener('click', () => {
+        if (confirm(`Delete "${p.file}"? This cannot be undone.`)) {
+          photos.splice(i, 1);
+          renderPhotos();
+        }
+      });
+
+      // drag events
+      item.addEventListener('dragstart', e => { dragSrc = i; item.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; });
+      item.addEventListener('dragend', () => { document.querySelectorAll('.photo-item').forEach(el => el.classList.remove('dragging','drag-over')); });
+      item.addEventListener('dragover', e => { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; item.classList.add('drag-over'); });
+      item.addEventListener('dragleave', () => item.classList.remove('drag-over'));
+      item.addEventListener('drop', e => {
+        e.preventDefault();
+        if (dragSrc === null || dragSrc === i) return;
+        const moved = photos.splice(dragSrc, 1)[0];
+        photos.splice(i, 0, moved);
+        dragSrc = null;
+        renderPhotos();
+      });
+
+      list.appendChild(item);
+    });
+  }
+
+  document.getElementById('savePhotosBtn').addEventListener('click', async () => {
+    const btn = document.getElementById('savePhotosBtn');
+    btn.disabled = true; btn.textContent = 'Saving…';
+    await fetch(`/api/photos?secret=${encodeURIComponent(adminSecret)}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ photos }),
+    });
+    btn.disabled = false;
+    btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save Order`;
   });
 
   // Auto-refresh every 30 seconds
