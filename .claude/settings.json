@@ -80,7 +80,9 @@
       "Bash(curl -sL \"https://lh3.googleusercontent.com/geougc/AF1QipMnkKZMhf7teXw0IqXeyU24kXDaihCrU6o3dF_X=w1200-h900-no\" -o /Users/ohannesiskenderian/Desktop/KevFix-Landing/photos/photo-2.jpg)",
       "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add photo gallery with storefront and repair photos\")",
       "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add all 11 business photos to gallery\")",
-      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add photo manager to admin: drag to reorder, toggle visibility, delete\")"
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add photo manager to admin: drag to reorder, toggle visibility, delete\")",
+      "Bash(curl -s -X POST https://api.vercel.com/v1/projects/prj_mmuwXuewhrp3k0hb7L8bhRTqziQo/deploy-hooks?teamId=team_ExrLZs6t1HPkK6AXfpQ4JBkf -H 'Authorization: Bearer vca_35o44nyPXptK9myg1ScuYYnHTg0nMRRR53zWKOOw7TswV8aAK12DJZfi' -H 'Content-Type: application/json' -d '{\"name\":\"photo-upload\",\"ref\":\"main\"}')",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Fix layout \\(map height, gallery/reviews overlap, mobile whitespace\\), add photo upload with GitHub commit + auto-redeploy\")"
     ]
   }
 }

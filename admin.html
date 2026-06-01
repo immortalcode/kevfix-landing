@@ -272,6 +272,23 @@
 
     .skeleton .stat-number { background: #1f2937; color: transparent; border-radius: 6px; }
 
+    /* UPLOAD ZONE */
+    .upload-zone {
+      border: 2px dashed #1f2937;
+      border-radius: 14px;
+      padding: 28px 20px;
+      text-align: center;
+      cursor: pointer;
+      margin-bottom: 16px;
+      transition: border-color .2s, background .2s;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .upload-zone:hover, .upload-zone.drag-active { border-color: #00a8e8; background: rgba(0,168,232,.04); }
+    .upload-label { font-size: .85rem; color: #6b7280; }
+    .upload-link { color: #00a8e8; cursor: pointer; font-weight: 600; }
+    .upload-bar-wrap { background: #1f2937; border-radius: 50px; height: 6px; overflow: hidden; }
+    .upload-bar { background: #00a8e8; height: 100%; border-radius: 50px; width: 0%; transition: width .3s; }
+
     /* PHOTO MANAGER */
     .save-photos-btn {
       display: flex; align-items: center; gap: 6px;
@@ -430,6 +447,18 @@
 
     <!-- PHOTO MANAGER -->
     <div style="margin-top:36px;">
+      <!-- Upload drop zone -->
+      <div class="upload-zone" id="uploadZone">
+        <input type="file" id="fileInput" accept="image/*" multiple style="display:none" />
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:#374151;margin-bottom:10px"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <p class="upload-label">Drop images here or <span class="upload-link" id="uploadTrigger">browse</span></p>
+        <p style="font-size:.72rem;color:#374151;margin-top:4px;">JPG, PNG, WEBP — site redeploys automatically</p>
+      </div>
+      <div id="uploadProgress" style="display:none;margin-bottom:16px;">
+        <div class="upload-bar-wrap"><div class="upload-bar" id="uploadBar"></div></div>
+        <p id="uploadStatus" style="font-size:.78rem;color:#6b7280;margin-top:6px;text-align:center;"></p>
+      </div>
+
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px;">
         <p class="section-title" style="margin:0">Photos</p>
         <button class="save-photos-btn" id="savePhotosBtn">
@@ -537,6 +566,62 @@
     modalOverlay.classList.remove('open');
     if (res.ok) loadStats();
   });
+
+  // ── UPLOAD ──
+  const uploadZone    = document.getElementById('uploadZone');
+  const fileInput     = document.getElementById('fileInput');
+  const uploadTrigger = document.getElementById('uploadTrigger');
+  const uploadProg    = document.getElementById('uploadProgress');
+  const uploadBar     = document.getElementById('uploadBar');
+  const uploadStatus  = document.getElementById('uploadStatus');
+
+  uploadTrigger.addEventListener('click', () => fileInput.click());
+  uploadZone.addEventListener('click', () => fileInput.click());
+  uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('drag-active'); });
+  uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('drag-active'));
+  uploadZone.addEventListener('drop', e => {
+    e.preventDefault(); uploadZone.classList.remove('drag-active');
+    handleFiles([...e.dataTransfer.files]);
+  });
+  fileInput.addEventListener('change', () => handleFiles([...fileInput.files]));
+
+  async function handleFiles(files) {
+    const imgs = files.filter(f => f.type.startsWith('image/'));
+    if (!imgs.length) return;
+    uploadProg.style.display = 'block';
+    for (let i = 0; i < imgs.length; i++) {
+      const file = imgs[i];
+      uploadStatus.textContent = `Uploading ${file.name} (${i+1}/${imgs.length})…`;
+      uploadBar.style.width = `${Math.round((i / imgs.length) * 100)}%`;
+      const base64 = await toBase64(file);
+      try {
+        const res = await fetch(`/api/upload?secret=${encodeURIComponent(adminSecret)}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ filename: file.name, content: base64, alt: file.name.replace(/\.[^.]+$/, '') }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Upload failed');
+      } catch (err) {
+        uploadStatus.textContent = `Error: ${err.message}`;
+        uploadBar.style.background = '#ef4444';
+        return;
+      }
+    }
+    uploadBar.style.width = '100%';
+    uploadStatus.textContent = `${imgs.length} photo${imgs.length > 1 ? 's' : ''} uploaded — redeploying site (takes ~30s)…`;
+    setTimeout(() => { uploadProg.style.display = 'none'; uploadBar.style.width = '0%'; uploadBar.style.background = '#00a8e8'; fileInput.value = ''; }, 6000);
+    setTimeout(() => loadPhotos(), 4000);
+  }
+
+  function toBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(',')[1]); // strip data URI
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
 
   // ── PHOTO MANAGER ──
   let photos = [];
