@@ -32,6 +32,7 @@
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       background: var(--gray-50);
       color: var(--text);
+      overflow-x: hidden;
     }
 
     /* ── HEADER ── */
@@ -41,16 +42,14 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 32px;
-      height: 64px;
+      padding: 10px 32px;
       position: sticky;
       top: 0;
       z-index: 200;
-      overflow: visible;
     }
 
     .logo { display: flex; align-items: center; }
-    .logo img { height: 120px; width: auto; display: block; }
+    .logo img { height: 80px; width: auto; display: block; }
 
     .header-call {
       display: flex;
@@ -450,13 +449,9 @@
 
     /* ── MOBILE ── */
     @media (max-width: 767px) {
-      /* keep header bar slim — logo overflows via overflow:visible inherited */
-      header {
-        height: 64px;
-        padding: 0 16px;
-      }
+      header { padding: 10px 16px; }
       .header-phone { display: none; }
-      .logo img { height: 90px; }
+      .logo img { height: 56px; }
 
       .page { padding: 20px 14px 130px; }
 
