@@ -386,6 +386,48 @@
       min-height: 0;
     }
 
+    /* ── PHOTO GALLERY ── */
+    .gallery-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 22px 14px;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .gallery-title {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .gallery-more {
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--blue);
+      text-decoration: none;
+    }
+    .gallery-more:hover { text-decoration: underline; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 3px;
+      padding: 3px;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      border-radius: 6px;
+      transition: opacity .2s;
+    }
+    .gallery-grid img:hover { opacity: .9; cursor: zoom-in; }
+
+    @media (max-width: 767px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid img { height: 150px; }
+    }
+
     /* ── REVIEWS SLIDER ── */
     .reviews-header {
       display: flex;
@@ -824,6 +866,20 @@
           referrerpolicy="no-referrer-when-downgrade"
           title="KevFix on Google Maps">
         </iframe>
+      </div>
+    </div>
+
+    <!-- FULL WIDTH: photo gallery -->
+    <div class="col-full">
+      <div class="card">
+        <div class="gallery-header">
+          <span class="gallery-title">Our Shop</span>
+          <a class="gallery-more" href="https://www.google.com/maps/search/KevFix+5212+Colfax+Ave+North+Hollywood+CA+91601" target="_blank" rel="noopener">See all on Google</a>
+        </div>
+        <div class="gallery-grid">
+          <img src="photos/photo-1.jpg" alt="KevFix storefront at 5212 Colfax Ave North Hollywood" loading="lazy" />
+          <img src="photos/photo-2.jpg" alt="KevFix repair work - PS5 internals" loading="lazy" />
+        </div>
       </div>
     </div>
 

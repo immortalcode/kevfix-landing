@@ -57,7 +57,28 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://kevfix-landing.vercel.app/admin\")",
       "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Remove WhatsApp, add 30s auto-refresh to admin dashboard\")",
       "Bash(vercel login *)",
-      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add reset button with confirmation modal to admin dashboard\")"
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add reset button with confirmation modal to admin dashboard\")",
+      "Bash(whois kevfix.com)",
+      "Bash(dig kevfix.com A +short)",
+      "Bash(curl -s -o /dev/null -w \"HTTP status: %{http_code}\" --max-time 5 https://kevfix.com)",
+      "Bash(vercel domains *)",
+      "Bash(curl -s -o /dev/null -w \"HTTP: %{http_code} | Final URL: %{url_effective}\" -L --max-time 10 https://service.kevfix.com)",
+      "Bash(curl -s -o /dev/null -w \"HTTP: %{http_code}\" --max-time 10 http://service.kevfix.com)",
+      "Bash(vercel project *)",
+      "Bash(dig service.kevfix.com A +short @8.8.8.8)",
+      "Bash(dig service.kevfix.com A +short @1.1.1.1)",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Make Google and Yelp badges clickable links\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Fix Yelp link to direct profile URL\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add open/closed badge with LA timezone and next opening time\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Show open/closed badge above call button in call card\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Shrink mobile header, add address to call card hero\")",
+      "Bash(node -e \"require\\('puppeteer'\\)\")",
+      "Bash(npm --version)",
+      "Bash(npm install *)",
+      "Bash(node -e ' *)",
+      "Bash(curl -sL \"https://lh3.googleusercontent.com/gps-cs-s/APNQkAEUz7PxPb4GDLoK_KZp9MZf6LsEVW8HveLvSG_-R_NEJErYp38VHN8h4fES0pdfrJefLixffhxxc6YTVzsQKSSVMqh5Xx9ocauWh6JX5HZJ0afug6xQi2-k1ZSjRANdsPc9jXidUhGQRqAH=w1200-h900-k-no\" -o /Users/ohannesiskenderian/Desktop/KevFix-Landing/photos/photo-1.jpg)",
+      "Bash(curl -sL \"https://lh3.googleusercontent.com/geougc/AF1QipMnkKZMhf7teXw0IqXeyU24kXDaihCrU6o3dF_X=w1200-h900-no\" -o /Users/ohannesiskenderian/Desktop/KevFix-Landing/photos/photo-2.jpg)",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add photo gallery with storefront and repair photos\")"
     ]
   }
 }
