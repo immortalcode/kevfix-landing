@@ -450,32 +450,44 @@
 
     /* ── MOBILE ── */
     @media (max-width: 767px) {
-      header { padding: 14px 16px; }
+      /* keep header bar slim — logo overflows via overflow:visible inherited */
+      header {
+        height: 64px;
+        padding: 0 16px;
+      }
       .header-phone { display: none; }
       .logo img { height: 90px; }
 
       .page { padding: 20px 14px 130px; }
 
+      /* single column stack */
       .layout {
         grid-template-columns: 1fr;
-        grid-template-rows: auto;
       }
       .col-left  { grid-column: 1; grid-row: auto; }
       .col-right { grid-column: 1; grid-row: auto; }
       .col-full  { grid-column: 1; grid-row: auto; }
 
-      /* bigger on mobile */
+      /* call card */
       .call-card { padding: 28px 20px; }
-      .call-number { font-size: 2.6rem; margin-bottom: 18px; }
+      .call-number { font-size: 2.6rem; letter-spacing: -1px; margin-bottom: 18px; }
       .btn-call { font-size: 1.15rem; padding: 18px; }
 
-      .info-icon { width: 46px; height: 46px; }
-      .info-value { font-size: 1.05rem; }
+      /* info rows */
+      .info-row { padding: 18px 16px; gap: 14px; }
+      .info-icon { width: 44px; height: 44px; }
+      .info-value { font-size: 1rem; }
 
-      .map-card iframe { min-height: 260px; }
+      /* map */
+      .map-card iframe { min-height: 240px; }
 
-      .review-card { flex: 0 0 82vw; }
+      /* reviews slider */
+      .reviews-header { padding: 16px 16px 12px; flex-wrap: wrap; gap: 8px; }
+      .slider-track { padding: 16px; gap: 12px; }
+      .review-card { flex: 0 0 82vw; padding: 16px; }
+      .slider-nav { padding: 0 16px 16px; }
 
+      /* floating cta */
       .float-cta { display: block; }
     }
 
