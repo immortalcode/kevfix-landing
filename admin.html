@@ -204,6 +204,12 @@
     }
     .refresh-btn:hover { border-color: #00a8e8; color: #00a8e8; }
 
+    .auto-refresh-badge {
+      font-size: .78rem;
+      color: #4b5563;
+    }
+    .auto-refresh-badge strong { color: #00a8e8; }
+
     .last-updated {
       font-size: .75rem;
       color: #374151;
@@ -247,13 +253,16 @@
 
   <div class="main">
 
-    <button class="refresh-btn" id="refreshBtn">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
-        <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
-      </svg>
-      Refresh
-    </button>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:10px;">
+      <button class="refresh-btn" id="refreshBtn" style="margin-bottom:0">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+          <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+        </svg>
+        Refresh
+      </button>
+      <span class="auto-refresh-badge" id="autoRefreshBadge">Auto-refresh in <strong id="countdown">30</strong>s</span>
+    </div>
 
     <p class="section-title">Today's Clicks</p>
     <div class="cards" id="todayCards">
@@ -271,11 +280,6 @@
         <div class="stat-icon msg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
         <div class="stat-label">iMessage</div>
         <div class="stat-number" id="todayMsg">—</div>
-      </div>
-      <div class="stat-card skeleton">
-        <div class="stat-icon wa"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.057 23.215a.75.75 0 00.925.899l5.485-1.757A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.944 9.944 0 01-5.071-1.383l-.361-.214-3.754 1.202 1.139-3.669-.235-.375A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></div>
-        <div class="stat-label">WhatsApp</div>
-        <div class="stat-number" id="todayWa">—</div>
       </div>
     </div>
 
@@ -295,11 +299,6 @@
         <div class="stat-icon msg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
         <div class="stat-label">iMessage</div>
         <div class="stat-number" id="totalMsg">—</div>
-      </div>
-      <div class="stat-card skeleton">
-        <div class="stat-icon wa"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.057 23.215a.75.75 0 00.925.899l5.485-1.757A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.944 9.944 0 01-5.071-1.383l-.361-.214-3.754 1.202 1.139-3.669-.235-.375A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></div>
-        <div class="stat-label">WhatsApp</div>
-        <div class="stat-number" id="totalWa">—</div>
       </div>
     </div>
 
@@ -372,15 +371,25 @@
     document.getElementById('todayAll').textContent  = data.today.all;
     document.getElementById('todayCall').textContent = data.today.call;
     document.getElementById('todayMsg').textContent  = data.today.imessage;
-    document.getElementById('todayWa').textContent   = data.today.whatsapp;
     document.getElementById('totalAll').textContent  = data.total.all;
     document.getElementById('totalCall').textContent = data.total.call;
     document.getElementById('totalMsg').textContent  = data.total.imessage;
-    document.getElementById('totalWa').textContent   = data.total.whatsapp;
     document.querySelectorAll('.stat-card').forEach(c => c.classList.remove('skeleton'));
     document.getElementById('lastUpdated').textContent =
       'Last updated: ' + new Date().toLocaleTimeString();
   }
+
+  // Auto-refresh every 30 seconds
+  let secondsLeft = 30;
+  const countdownEl = document.getElementById('countdown');
+  setInterval(() => {
+    secondsLeft--;
+    if (countdownEl) countdownEl.textContent = secondsLeft;
+    if (secondsLeft <= 0) {
+      secondsLeft = 30;
+      if (adminSecret) loadStats();
+    }
+  }, 1000);
 </script>
 </body>
 </html>
