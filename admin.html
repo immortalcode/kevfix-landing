@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KevFix – Admin Dashboard</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #0a0f1e;
+      color: #f9fafb;
+      min-height: 100vh;
+    }
+
+    /* LOGIN */
+    .login-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .login-card {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 20px;
+      padding: 40px 36px;
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+    }
+    .login-logo {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .login-logo span { color: #00a8e8; }
+    .login-sub {
+      font-size: .85rem;
+      color: #6b7280;
+      margin-bottom: 28px;
+    }
+    .login-input {
+      width: 100%;
+      background: #1f2937;
+      border: 1.5px solid #374151;
+      border-radius: 12px;
+      padding: 13px 16px;
+      font-size: .95rem;
+      color: #f9fafb;
+      font-family: inherit;
+      outline: none;
+      margin-bottom: 12px;
+      transition: border-color .2s;
+    }
+    .login-input:focus { border-color: #00a8e8; }
+    .login-btn {
+      width: 100%;
+      background: #00a8e8;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 13px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background .2s;
+    }
+    .login-btn:hover { background: #0077b6; }
+    .login-error {
+      font-size: .82rem;
+      color: #ef4444;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* DASHBOARD */
+    .dashboard { display: none; }
+
+    header {
+      background: #111827;
+      border-bottom: 1px solid #1f2937;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 32px;
+    }
+    .dash-logo { font-size: 1.3rem; font-weight: 900; color: #fff; }
+    .dash-logo span { color: #00a8e8; }
+    .dash-meta { font-size: .8rem; color: #6b7280; }
+
+    .logout-btn {
+      background: transparent;
+      border: 1.5px solid #374151;
+      color: #9ca3af;
+      font-size: .8rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color .2s, color .2s;
+    }
+    .logout-btn:hover { border-color: #ef4444; color: #ef4444; }
+
+    .main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 36px 24px;
+    }
+
+    .section-title {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #6b7280;
+      margin-bottom: 14px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+
+    .stat-card {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 16px;
+      padding: 24px 22px;
+    }
+
+    .stat-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .stat-icon.call    { background: rgba(0,168,232,.15); color: #00a8e8; }
+    .stat-icon.msg     { background: rgba(52,199,89,.15);  color: #34c759; }
+    .stat-icon.wa      { background: rgba(37,211,102,.15); color: #25d366; }
+    .stat-icon.total   { background: rgba(245,158,11,.15); color: #f59e0b; }
+
+    .stat-label {
+      font-size: .75rem;
+      font-weight: 600;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin-bottom: 6px;
+    }
+
+    .stat-number {
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: #f9fafb;
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+
+    .stat-sub {
+      font-size: .78rem;
+      color: #4b5563;
+      margin-top: 6px;
+    }
+
+    .today-badge {
+      display: inline-block;
+      background: rgba(0,168,232,.12);
+      color: #00a8e8;
+      font-size: .7rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 50px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    .refresh-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: 1.5px solid #1f2937;
+      color: #9ca3af;
+      font-size: .82rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color .2s, color .2s;
+      margin-bottom: 28px;
+    }
+    .refresh-btn:hover { border-color: #00a8e8; color: #00a8e8; }
+
+    .last-updated {
+      font-size: .75rem;
+      color: #374151;
+      margin-top: -20px;
+      margin-bottom: 28px;
+    }
+
+    .skeleton .stat-number { background: #1f2937; color: transparent; border-radius: 6px; }
+
+    @media (max-width: 600px) {
+      header { padding: 14px 16px; }
+      .main { padding: 24px 14px; }
+      .stat-number { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login-card">
+    <div class="login-logo">Kev<span>Fix</span></div>
+    <p class="login-sub">Admin Dashboard</p>
+    <input class="login-input" type="password" id="secretInput" placeholder="Enter admin password" autocomplete="current-password" />
+    <button class="login-btn" id="loginBtn">Sign In</button>
+    <p class="login-error" id="loginError">Incorrect password. Try again.</p>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+  <header>
+    <div>
+      <div class="dash-logo">Kev<span>Fix</span> Analytics</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <span class="dash-meta" id="dashDate"></span>
+      <button class="logout-btn" id="logoutBtn">Sign Out</button>
+    </div>
+  </header>
+
+  <div class="main">
+
+    <button class="refresh-btn" id="refreshBtn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+        <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+      </svg>
+      Refresh
+    </button>
+
+    <p class="section-title">Today's Clicks</p>
+    <div class="cards" id="todayCards">
+      <div class="stat-card skeleton">
+        <div class="stat-icon total"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="stat-label">Total Today</div>
+        <div class="stat-number" id="todayAll">—</div>
+      </div>
+      <div class="stat-card skeleton">
+        <div class="stat-icon call"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+        <div class="stat-label">Call Now</div>
+        <div class="stat-number" id="todayCall">—</div>
+      </div>
+      <div class="stat-card skeleton">
+        <div class="stat-icon msg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        <div class="stat-label">iMessage</div>
+        <div class="stat-number" id="todayMsg">—</div>
+      </div>
+      <div class="stat-card skeleton">
+        <div class="stat-icon wa"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.057 23.215a.75.75 0 00.925.899l5.485-1.757A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.944 9.944 0 01-5.071-1.383l-.361-.214-3.754 1.202 1.139-3.669-.235-.375A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></div>
+        <div class="stat-label">WhatsApp</div>
+        <div class="stat-number" id="todayWa">—</div>
+      </div>
+    </div>
+
+    <p class="section-title">All-Time Clicks</p>
+    <div class="cards">
+      <div class="stat-card skeleton">
+        <div class="stat-icon total"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="stat-label">Total All-Time</div>
+        <div class="stat-number" id="totalAll">—</div>
+      </div>
+      <div class="stat-card skeleton">
+        <div class="stat-icon call"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+        <div class="stat-label">Call Now</div>
+        <div class="stat-number" id="totalCall">—</div>
+      </div>
+      <div class="stat-card skeleton">
+        <div class="stat-icon msg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        <div class="stat-label">iMessage</div>
+        <div class="stat-number" id="totalMsg">—</div>
+      </div>
+      <div class="stat-card skeleton">
+        <div class="stat-icon wa"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.057 23.215a.75.75 0 00.925.899l5.485-1.757A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.944 9.944 0 01-5.071-1.383l-.361-.214-3.754 1.202 1.139-3.669-.235-.375A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></div>
+        <div class="stat-label">WhatsApp</div>
+        <div class="stat-number" id="totalWa">—</div>
+      </div>
+    </div>
+
+    <p class="last-updated" id="lastUpdated"></p>
+  </div>
+</div>
+
+<script>
+  const loginWrap  = document.getElementById('loginWrap');
+  const dashboard  = document.getElementById('dashboard');
+  const secretInput = document.getElementById('secretInput');
+  const loginBtn   = document.getElementById('loginBtn');
+  const loginError = document.getElementById('loginError');
+  const logoutBtn  = document.getElementById('logoutBtn');
+  const refreshBtn = document.getElementById('refreshBtn');
+
+  let adminSecret = sessionStorage.getItem('kf_secret') || '';
+  if (adminSecret) showDashboard();
+
+  loginBtn.addEventListener('click', tryLogin);
+  secretInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
+  logoutBtn.addEventListener('click', () => {
+    sessionStorage.removeItem('kf_secret');
+    adminSecret = '';
+    dashboard.style.display = 'none';
+    loginWrap.style.display = 'flex';
+    secretInput.value = '';
+  });
+  refreshBtn.addEventListener('click', loadStats);
+
+  async function tryLogin() {
+    const val = secretInput.value.trim();
+    if (!val) return;
+    loginBtn.textContent = 'Checking…';
+    const res = await fetch(`/api/stats?secret=${encodeURIComponent(val)}`);
+    loginBtn.textContent = 'Sign In';
+    if (res.status === 401) {
+      loginError.style.display = 'block';
+      return;
+    }
+    loginError.style.display = 'none';
+    adminSecret = val;
+    sessionStorage.setItem('kf_secret', val);
+    const data = await res.json();
+    showDashboard(data);
+  }
+
+  function showDashboard(data) {
+    loginWrap.style.display = 'none';
+    dashboard.style.display = 'block';
+    const now = new Date();
+    document.getElementById('dashDate').textContent =
+      now.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+    if (data) renderStats(data);
+    else loadStats();
+  }
+
+  async function loadStats() {
+    refreshBtn.disabled = true;
+    refreshBtn.textContent = 'Loading…';
+    const res = await fetch(`/api/stats?secret=${encodeURIComponent(adminSecret)}`);
+    refreshBtn.disabled = false;
+    refreshBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg> Refresh`;
+    if (!res.ok) return;
+    const data = await res.json();
+    renderStats(data);
+  }
+
+  function renderStats(data) {
+    document.getElementById('todayAll').textContent  = data.today.all;
+    document.getElementById('todayCall').textContent = data.today.call;
+    document.getElementById('todayMsg').textContent  = data.today.imessage;
+    document.getElementById('todayWa').textContent   = data.today.whatsapp;
+    document.getElementById('totalAll').textContent  = data.total.all;
+    document.getElementById('totalCall').textContent = data.total.call;
+    document.getElementById('totalMsg').textContent  = data.total.imessage;
+    document.getElementById('totalWa').textContent   = data.total.whatsapp;
+    document.querySelectorAll('.stat-card').forEach(c => c.classList.remove('skeleton'));
+    document.getElementById('lastUpdated').textContent =
+      'Last updated: ' + new Date().toLocaleTimeString();
+  }
+</script>
+</body>
+</html>

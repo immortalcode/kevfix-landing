@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh auth *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(gh repo *)",
+      "Bash(git push *)",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing status)",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing add index.html)",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Fix mobile layout: remove overflow trick, contain logo, prevent horizontal scroll\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing push)",
+      "Bash(vercel ls *)",
+      "Bash(vercel whoami *)",
+      "Bash(vercel link *)",
+      "Bash(vercel --prod)",
+      "Bash(open -a \"Google Chrome\" --args --window-size=390,844 /Users/ohannesiskenderian/Desktop/KevFix-Landing/index.html)",
+      "Bash(screencapture -t png /tmp/mobile_preview.png)",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Mobile: replace broken grid with flex column, fix card overflow\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Increase mobile logo size to 72px\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add Google and Yelp 5-star rating badges under call button\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add iMessage and WhatsApp contact buttons\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add rotating pain-point headline above call card\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Fix desktop map alignment, fix Yelp logo, confirm address links to Google Maps\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Update address link to open KevFix Google Business profile\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing add -A)",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add favicon, click tracking API, and admin dashboard\")"
+    ]
+  }
+}
