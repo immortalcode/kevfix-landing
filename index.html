@@ -139,6 +139,19 @@
       text-align: center;
     }
 
+    .hero-address {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color .15s;
+    }
+    .hero-address:hover { color: var(--blue); }
+
     .call-eyebrow {
       font-size: .72rem;
       font-weight: 700;
@@ -588,9 +601,10 @@
 
     /* ── MOBILE ── */
     @media (max-width: 767px) {
-      header { padding: 10px 16px; }
+      header { padding: 6px 14px; height: 52px; }
       .header-phone { display: none; }
-      .logo img { height: 72px; }
+      .logo img { height: 44px; }
+      .btn-sm { font-size: .8rem; padding: 8px 14px; }
 
       .page { padding: 16px 12px 120px; }
 
@@ -715,6 +729,10 @@
 
       <!-- Call card -->
       <div class="card call-card">
+        <a class="hero-address" href="https://www.google.com/maps/search/KevFix+5212+Colfax+Ave+North+Hollywood+CA+91601" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          5212 Colfax Ave, North Hollywood
+        </a>
         <p class="call-eyebrow">Tap to call us now</p>
         <a class="call-number" href="tel:+17472307800">(747) 230-7800</a>
         <p id="openBadgeCard" style="margin-bottom:14px;"></p>
