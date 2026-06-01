@@ -178,6 +178,45 @@
     .btn-call:hover { background: var(--blue-dk); transform: translateY(-1px); }
     .btn-call:active { transform: translateY(0); }
 
+    /* ── ROTATING HEADLINE ── */
+    .rotating-headline {
+      text-align: center;
+      padding: 8px 4px 4px;
+    }
+
+    .rh-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .rh-text {
+      font-size: clamp(2rem, 7vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      color: var(--text);
+      line-height: 1.1;
+      transition: opacity .35s ease, transform .35s ease;
+    }
+
+    .rh-text.fade-out {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    .rh-text.fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .rh-sub {
+      font-size: .9rem;
+      color: var(--gray-500);
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
     /* ── ALT CONTACT BUTTONS ── */
     .alt-contact {
       display: flex;
@@ -645,6 +684,14 @@
     <!-- LEFT: call + contact info -->
     <div class="col-left">
 
+      <!-- Rotating headline -->
+      <div class="rotating-headline">
+        <div class="rh-inner">
+          <span class="rh-text" id="rhText">Broken Screen?</span>
+        </div>
+        <p class="rh-sub">We fix it fast — same day, no hassle.</p>
+      </div>
+
       <!-- Call card -->
       <div class="card call-card">
         <p class="call-eyebrow">Tap to call us now</p>
@@ -923,6 +970,33 @@
   });
 
   goTo(0);
+
+  // ── ROTATING HEADLINE ──
+  const headlines = [
+    'Broken Screen?',
+    'Battery Dead?',
+    'iPad Not Working?',
+    'PS5 Not Turning On?',
+    'Xbox Damaged?',
+    'Water Damage?',
+    'Charging Issues?',
+    'Data Lost?',
+    'Samsung Cracked?',
+  ];
+  const rhEl = document.getElementById('rhText');
+  let rhIndex = 0;
+
+  function rotateHeadline() {
+    rhEl.classList.add('fade-out');
+    setTimeout(() => {
+      rhIndex = (rhIndex + 1) % headlines.length;
+      rhEl.textContent = headlines[rhIndex];
+      rhEl.classList.remove('fade-out');
+    }, 380);
+  }
+
+  rhEl.classList.add('fade-in');
+  setInterval(rotateHeadline, 2600);
 </script>
 </body>
 </html>
