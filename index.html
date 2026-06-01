@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="KevFix – Phone repair in North Hollywood. Call (747) 230-7800. Located at 5212 Colfax Ave." />
+  <title>KevFix – Phone Repair North Hollywood</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue:    #00a8e8;
+      --blue-dk: #0077b6;
+      --dark:    #111827;
+      --gray-50: #f8f9fa;
+      --gray-100:#f0f2f5;
+      --gray-200:#e1e4e8;
+      --gray-400:#9ca3af;
+      --gray-500:#6b7280;
+      --text:    #111827;
+      --white:   #ffffff;
+      --radius:  16px;
+      --shadow:  0 2px 16px rgba(0,0,0,.08);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--gray-50);
+      color: var(--text);
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      overflow: visible;
+    }
+
+    .logo { display: flex; align-items: center; }
+    .logo img { height: 120px; width: auto; display: block; }
+
+    .header-call {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-phone {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .header-phone:hover { color: var(--blue-dk); }
+
+    .btn-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 700;
+      font-size: .875rem;
+      padding: 10px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+      white-space: nowrap;
+    }
+    .btn-sm:hover { background: var(--blue-dk); transform: translateY(-1px); }
+
+    /* ── PAGE LAYOUT ── */
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 36px 24px 140px;
+    }
+
+    /* two-col on desktop */
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 20px;
+      align-items: start;
+    }
+
+    /* LEFT column: call + info stacked */
+    .col-left {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      grid-column: 1;
+      grid-row: 1 / 3;
+    }
+
+    /* RIGHT column: map */
+    .col-right {
+      grid-column: 2;
+      grid-row: 1 / 3;
+    }
+
+    /* reviews: full width below */
+    .col-full {
+      grid-column: 1 / -1;
+      grid-row: 3;
+    }
+
+    /* ── CARD BASE ── */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    /* ── CALL CARD ── */
+    .call-card {
+      padding: 32px 28px;
+      text-align: center;
+    }
+
+    .call-eyebrow {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      margin-bottom: 12px;
+    }
+
+    .call-number {
+      display: block;
+      font-size: clamp(2.2rem, 5vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      color: var(--text);
+      text-decoration: none;
+      line-height: 1;
+      margin-bottom: 20px;
+      transition: color .15s;
+    }
+    .call-number:hover { color: var(--blue-dk); }
+
+    .btn-call {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 17px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .btn-call:hover { background: var(--blue-dk); transform: translateY(-1px); }
+    .btn-call:active { transform: translateY(0); }
+
+    /* ── INFO ROWS ── */
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--gray-100);
+      text-decoration: none;
+      color: inherit;
+      transition: background .15s;
+    }
+    .info-row:last-child { border-bottom: none; }
+    a.info-row:hover { background: var(--gray-50); }
+
+    .info-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--blue-dk);
+    }
+
+    .info-content { flex: 1; }
+
+    .info-label {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      margin-bottom: 5px;
+    }
+
+    .info-value {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    .hours-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 3px 14px;
+    }
+    .hours-day  { font-size: .925rem; font-weight: 600; }
+    .hours-time { font-size: .925rem; color: var(--gray-500); }
+    .closed     { color: #ef4444; font-weight: 600; }
+
+    .chevron { color: var(--gray-200); flex-shrink: 0; align-self: center; }
+
+    /* ── MAP ── */
+    .map-card { height: 100%; display: flex; flex-direction: column; }
+    .map-card iframe {
+      flex: 1;
+      width: 100%;
+      min-height: 420px;
+      border: none;
+      display: block;
+    }
+
+    /* ── REVIEWS SLIDER ── */
+    .reviews-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 28px 16px;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .reviews-title {
+      font-size: .95rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .g-logo { width: 22px; height: 22px; flex-shrink: 0; }
+
+    .rating-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 50px;
+      padding: 5px 14px;
+    }
+    .stars     { color: #f59e0b; font-size: .9rem; }
+    .rating-num { font-size: .875rem; font-weight: 800; }
+    .rating-total { font-size: .78rem; color: var(--gray-500); }
+
+    /* Slider track */
+    .slider-wrap {
+      position: relative;
+    }
+
+    .slider-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 0;
+      padding: 24px 28px;
+      gap: 16px;
+    }
+    .slider-track::-webkit-scrollbar { display: none; }
+
+    .review-card {
+      flex: 0 0 300px;
+      scroll-snap-align: start;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .review-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dk) 100%);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: .82rem;
+      flex-shrink: 0;
+    }
+
+    .reviewer-name  { font-weight: 700; font-size: .875rem; }
+    .review-stars-sm { color: #f59e0b; font-size: .78rem; letter-spacing: 1px; margin-top: 1px; }
+
+    .review-body {
+      font-size: .875rem;
+      color: var(--gray-500);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    /* Slider nav buttons */
+    .slider-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 28px 20px;
+    }
+
+    .nav-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gray-200);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text);
+      transition: border-color .2s, background .2s;
+      flex-shrink: 0;
+    }
+    .nav-btn:hover { border-color: var(--blue); background: var(--gray-50); color: var(--blue); }
+    .nav-btn:disabled { opacity: .3; cursor: default; }
+
+    .slider-dots {
+      display: flex;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gray-200);
+      transition: background .2s, width .2s;
+      cursor: pointer;
+    }
+    .dot.active {
+      background: var(--blue);
+      width: 20px;
+      border-radius: 3px;
+    }
+
+    /* ── SERVICES TICKER ── */
+    .ticker-bar {
+      background: var(--dark);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      overflow: hidden;
+      padding: 0;
+      height: 48px;
+      display: flex;
+      align-items: center;
+    }
+
+    .ticker-track {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      white-space: nowrap;
+      animation: ticker 28s linear infinite;
+      will-change: transform;
+    }
+
+    .ticker-bar:hover .ticker-track { animation-play-state: paused; }
+
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 32px;
+      font-size: .8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.75);
+      letter-spacing: .3px;
+      text-transform: uppercase;
+    }
+
+    .ticker-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--blue);
+      flex-shrink: 0;
+    }
+
+    /* ── FLOATING CALL (mobile) ── */
+    .float-cta {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 300;
+      padding: 12px 16px env(safe-area-inset-bottom, 0px);
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-top: 1px solid var(--gray-200);
+      display: none;
+    }
+
+    .float-cta a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 16px;
+      border-radius: 50px;
+      text-decoration: none;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 767px) {
+      header { padding: 14px 16px; }
+      .header-phone { display: none; }
+      .logo img { height: 90px; }
+
+      .page { padding: 20px 14px 130px; }
+
+      .layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+      .col-left  { grid-column: 1; grid-row: auto; }
+      .col-right { grid-column: 1; grid-row: auto; }
+      .col-full  { grid-column: 1; grid-row: auto; }
+
+      /* bigger on mobile */
+      .call-card { padding: 28px 20px; }
+      .call-number { font-size: 2.6rem; margin-bottom: 18px; }
+      .btn-call { font-size: 1.15rem; padding: 18px; }
+
+      .info-icon { width: 46px; height: 46px; }
+      .info-value { font-size: 1.05rem; }
+
+      .map-card iframe { min-height: 260px; }
+
+      .review-card { flex: 0 0 82vw; }
+
+      .float-cta { display: block; }
+    }
+
+    /* tablet */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .review-card { flex: 0 0 340px; }
+      .map-card iframe { min-height: 360px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="logo" href="#">
+    <img src="KevFix Logo.png" alt="KevFix" />
+  </a>
+  <div class="header-call">
+    <a class="header-phone" href="tel:+17472307800">(747) 230-7800</a>
+    <a class="btn-sm" href="tel:+17472307800">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+      </svg>
+      Call Now
+    </a>
+  </div>
+</header>
+
+<!-- SERVICES TICKER -->
+<div class="ticker-bar" aria-hidden="true">
+  <div class="ticker-track">
+    <!-- set 1 -->
+    <span class="ticker-item"><span class="ticker-dot"></span>Screen Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Battery Replacement</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Water Damage</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Charging Port</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Data Recovery</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>iPhone Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Android Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>iPad Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Samsung Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>PS5 &amp; Xbox Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Camera Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Speaker &amp; Mic Fix</span>
+    <!-- set 2 (duplicate for seamless loop) -->
+    <span class="ticker-item"><span class="ticker-dot"></span>Screen Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Battery Replacement</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Water Damage</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Charging Port</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Data Recovery</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>iPhone Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Android Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>iPad Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Samsung Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>PS5 &amp; Xbox Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Camera Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Speaker &amp; Mic Fix</span>
+  </div>
+</div>
+
+<main class="page">
+  <div class="layout">
+
+    <!-- LEFT: call + contact info -->
+    <div class="col-left">
+
+      <!-- Call card -->
+      <div class="card call-card">
+        <p class="call-eyebrow">Tap to call us now</p>
+        <a class="call-number" href="tel:+17472307800">(747) 230-7800</a>
+        <a class="btn-call" href="tel:+17472307800">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+          Call Now
+        </a>
+      </div>
+
+      <!-- Address + Hours -->
+      <div class="card">
+        <a class="info-row" href="https://maps.google.com/?q=5212+Colfax+Ave,+North+Hollywood,+CA+91601" target="_blank" rel="noopener">
+          <div class="info-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div class="info-content">
+            <div class="info-label">Address</div>
+            <div class="info-value">5212 Colfax Ave<br>North Hollywood, CA 91601</div>
+          </div>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+
+        <div class="info-row">
+          <div class="info-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div class="info-content">
+            <div class="info-label">Hours</div>
+            <div class="hours-grid">
+              <span class="hours-day">Mon – Sat</span><span class="hours-time">10:00 AM – 7:00 PM</span>
+              <span class="hours-day">Sunday</span><span class="hours-time closed">Closed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: map -->
+    <div class="col-right">
+      <div class="card map-card">
+        <iframe
+          src="https://maps.google.com/maps?q=KevFix+5212+Colfax+Ave+North+Hollywood+CA+91601&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="KevFix on Google Maps">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- FULL WIDTH: review slider -->
+    <div class="col-full">
+      <div class="card">
+
+        <div class="reviews-header">
+          <div class="reviews-title">
+            <svg class="g-logo" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+              <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+              <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+              <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+            </svg>
+            Google Reviews
+          </div>
+          <div class="rating-pill">
+            <span class="stars">★★★★★</span>
+            <span class="rating-num">5.0</span>
+            <span class="rating-total">· 100+ reviews</span>
+          </div>
+        </div>
+
+        <div class="slider-wrap">
+          <div class="slider-track" id="slider">
+
+            <div class="review-card">
+              <div class="review-top">
+                <div class="avatar">J</div>
+                <div>
+                  <div class="reviewer-name">Jaydan M.</div>
+                  <div class="review-stars-sm">★★★★★</div>
+                </div>
+              </div>
+              <p class="review-body">"Came in to get my iPhone 14 fixed — in and out in 10 minutes. Great service, fast and friendly!"</p>
+            </div>
+
+            <div class="review-card">
+              <div class="review-top">
+                <div class="avatar">G</div>
+                <div>
+                  <div class="reviewer-name">Griffin N.</div>
+                  <div class="review-stars-sm">★★★★★</div>
+                </div>
+              </div>
+              <p class="review-body">"Amazing experience. Top-notch service, fast and affordable. Highly recommend for anyone looking to get their phone fixed hassle-free!"</p>
+            </div>
+
+            <div class="review-card">
+              <div class="review-top">
+                <div class="avatar">P</div>
+                <div>
+                  <div class="reviewer-name">Peter L.</div>
+                  <div class="review-stars-sm">★★★★★</div>
+                </div>
+              </div>
+              <p class="review-body">"Fast, affordable, great service. No run around. Would recommend!"</p>
+            </div>
+
+            <div class="review-card">
+              <div class="review-top">
+                <div class="avatar">Z</div>
+                <div>
+                  <div class="reviewer-name">Zenko K.</div>
+                  <div class="review-stars-sm">★★★★★</div>
+                </div>
+              </div>
+              <p class="review-body">"Got my iPhone screen fixed here. It was really fast and the owner was nice."</p>
+            </div>
+
+            <div class="review-card">
+              <div class="review-top">
+                <div class="avatar">H</div>
+                <div>
+                  <div class="reviewer-name">Hudson D.</div>
+                  <div class="review-stars-sm">★★★★★</div>
+                </div>
+              </div>
+              <p class="review-body">"Flawless repair job. Their expertise and attention to detail were evident. They're the real deal!"</p>
+            </div>
+
+            <div class="review-card">
+              <div class="review-top">
+                <div class="avatar">S</div>
+                <div>
+                  <div class="reviewer-name">Sienna C.</div>
+                  <div class="review-stars-sm">★★★★★</div>
+                </div>
+              </div>
+              <p class="review-body">"The best experience with KevFix's data recovery service! Incredibly fast and efficient. Simply the best!"</p>
+            </div>
+
+            <div class="review-card">
+              <div class="review-top">
+                <div class="avatar">K</div>
+                <div>
+                  <div class="reviewer-name">Ketan J.</div>
+                  <div class="review-stars-sm">★★★★★</div>
+                </div>
+              </div>
+              <p class="review-body">"Diagnosed my PS5's damaged HDMI port instantly and performed a precision repair. Absolutely impressed."</p>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="slider-nav">
+          <button class="nav-btn" id="prev" aria-label="Previous">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="slider-dots" id="dots"></div>
+          <button class="nav-btn" id="next" aria-label="Next">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- FLOATING CALL (mobile only) -->
+<div class="float-cta">
+  <a href="tel:+17472307800">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+    Call (747) 230-7800
+  </a>
+</div>
+
+<script>
+  const track = document.getElementById('slider');
+  const dotsEl = document.getElementById('dots');
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+  const cards = track.querySelectorAll('.review-card');
+  const count = cards.length;
+  let current = 0;
+
+  // build dots
+  cards.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Review ' + (i + 1));
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  });
+
+  function goTo(index) {
+    current = Math.max(0, Math.min(index, count - 1));
+    const card = cards[current];
+    track.scrollTo({ left: card.offsetLeft - track.offsetLeft - 28, behavior: 'smooth' });
+    dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === count - 1;
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  // sync dots on manual swipe/scroll
+  let scrollTimer;
+  track.addEventListener('scroll', () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      let closest = 0, minDist = Infinity;
+      cards.forEach((card, i) => {
+        const dist = Math.abs(card.offsetLeft - track.offsetLeft - 28 - track.scrollLeft);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+      if (closest !== current) {
+        current = closest;
+        dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+        prevBtn.disabled = current === 0;
+        nextBtn.disabled = current === count - 1;
+      }
+    }, 80);
+  });
+
+  goTo(0);
+</script>
+</body>
+</html>
