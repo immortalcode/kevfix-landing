@@ -462,34 +462,51 @@
       .header-phone { display: none; }
       .logo img { height: 56px; }
 
-      .page { padding: 20px 14px 130px; }
+      .page { padding: 16px 12px 120px; }
 
-      /* single column stack */
+      /* dump the grid entirely on mobile — simple flex column */
       .layout {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
       }
-      .col-left  { grid-column: 1; grid-row: auto; }
-      .col-right { grid-column: 1; grid-row: auto; }
-      .col-full  { grid-column: 1; grid-row: auto; }
+      .col-left {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        width: 100%;
+      }
+      .col-right { width: 100%; }
+      .col-full  { width: 100%; }
 
       /* call card */
-      .call-card { padding: 28px 20px; }
-      .call-number { font-size: 2.6rem; letter-spacing: -1px; margin-bottom: 18px; }
-      .btn-call { font-size: 1.15rem; padding: 18px; }
+      .call-card { padding: 28px 16px; }
+      .call-eyebrow { font-size: .72rem; }
+      .call-number {
+        font-size: 2rem;
+        letter-spacing: -0.5px;
+        margin-bottom: 16px;
+      }
+      .btn-call {
+        font-size: 1.1rem;
+        padding: 16px;
+        width: 100%;
+      }
 
       /* info rows */
-      .info-row { padding: 18px 16px; gap: 14px; }
-      .info-icon { width: 44px; height: 44px; }
-      .info-value { font-size: 1rem; }
+      .info-row { padding: 16px 14px; gap: 12px; }
+      .info-icon { width: 40px; height: 40px; flex-shrink: 0; }
+      .info-value { font-size: .95rem; }
 
       /* map */
-      .map-card iframe { min-height: 240px; }
+      .map-card { height: auto; }
+      .map-card iframe { min-height: 220px; }
 
-      /* reviews slider */
-      .reviews-header { padding: 16px 16px 12px; flex-wrap: wrap; gap: 8px; }
-      .slider-track { padding: 16px; gap: 12px; }
-      .review-card { flex: 0 0 82vw; padding: 16px; }
-      .slider-nav { padding: 0 16px 16px; }
+      /* reviews */
+      .reviews-header { padding: 14px 14px 10px; flex-wrap: wrap; gap: 8px; }
+      .slider-track { padding: 14px; gap: 12px; }
+      .review-card { flex: 0 0 80vw; padding: 16px; }
+      .slider-nav { padding: 0 14px 14px; }
 
       /* floating cta */
       .float-cta { display: block; }
