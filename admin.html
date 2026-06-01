@@ -204,6 +204,59 @@
     }
     .refresh-btn:hover { border-color: #00a8e8; color: #00a8e8; }
 
+    .reset-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: 1.5px solid #374151;
+      color: #ef4444;
+      font-size: .82rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color .2s, background .2s;
+    }
+    .reset-btn:hover { border-color: #ef4444; background: rgba(239,68,68,.08); }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.7);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 18px;
+      padding: 32px 28px;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+    }
+    .modal-title { font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; }
+    .modal-sub { font-size: .85rem; color: #6b7280; line-height: 1.55; margin-bottom: 24px; }
+    .modal-actions { display: flex; gap: 10px; }
+    .modal-cancel {
+      flex: 1; padding: 12px; border-radius: 50px; border: 1.5px solid #374151;
+      background: transparent; color: #9ca3af; font-weight: 700; font-size: .9rem;
+      cursor: pointer; font-family: inherit; transition: border-color .2s;
+    }
+    .modal-cancel:hover { border-color: #6b7280; }
+    .modal-confirm {
+      flex: 1; padding: 12px; border-radius: 50px; border: none;
+      background: #ef4444; color: #fff; font-weight: 700; font-size: .9rem;
+      cursor: pointer; font-family: inherit; transition: background .2s;
+    }
+    .modal-confirm:hover { background: #dc2626; }
+
     .auto-refresh-badge {
       font-size: .78rem;
       color: #4b5563;
@@ -254,14 +307,34 @@
   <div class="main">
 
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:10px;">
-      <button class="refresh-btn" id="refreshBtn" style="margin-bottom:0">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
-          <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
-        </svg>
-        Refresh
-      </button>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+        <button class="refresh-btn" id="refreshBtn" style="margin-bottom:0">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+            <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+          </svg>
+          Refresh
+        </button>
+        <button class="reset-btn" id="resetBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/>
+          </svg>
+          Reset All
+        </button>
+      </div>
       <span class="auto-refresh-badge" id="autoRefreshBadge">Auto-refresh in <strong id="countdown">30</strong>s</span>
+
+      <!-- Confirm modal -->
+      <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+          <p class="modal-title">Reset all stats?</p>
+          <p class="modal-sub">This will zero out all click counts — today and all-time. This cannot be undone.</p>
+          <div class="modal-actions">
+            <button class="modal-cancel" id="modalCancel">Cancel</button>
+            <button class="modal-confirm" id="modalConfirm">Yes, Reset</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <p class="section-title">Today's Clicks</p>
@@ -378,6 +451,26 @@
     document.getElementById('lastUpdated').textContent =
       'Last updated: ' + new Date().toLocaleTimeString();
   }
+
+  // Reset
+  const resetBtn     = document.getElementById('resetBtn');
+  const modalOverlay = document.getElementById('modalOverlay');
+  const modalCancel  = document.getElementById('modalCancel');
+  const modalConfirm = document.getElementById('modalConfirm');
+
+  resetBtn.addEventListener('click', () => modalOverlay.classList.add('open'));
+  modalCancel.addEventListener('click', () => modalOverlay.classList.remove('open'));
+  modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) modalOverlay.classList.remove('open'); });
+
+  modalConfirm.addEventListener('click', async () => {
+    modalConfirm.textContent = 'Resetting…';
+    modalConfirm.disabled = true;
+    const res = await fetch(`/api/reset?secret=${encodeURIComponent(adminSecret)}`, { method: 'POST' });
+    modalConfirm.textContent = 'Yes, Reset';
+    modalConfirm.disabled = false;
+    modalOverlay.classList.remove('open');
+    if (res.ok) loadStats();
+  });
 
   // Auto-refresh every 30 seconds
   let secondsLeft = 30;

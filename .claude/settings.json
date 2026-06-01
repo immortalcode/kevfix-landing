@@ -55,7 +55,9 @@
       "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing add vercel.json)",
       "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add vercel.json to route /admin to admin.html\")",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://kevfix-landing.vercel.app/admin\")",
-      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Remove WhatsApp, add 30s auto-refresh to admin dashboard\")"
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Remove WhatsApp, add 30s auto-refresh to admin dashboard\")",
+      "Bash(vercel login *)",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add reset button with confirmation modal to admin dashboard\")"
     ]
   }
 }
