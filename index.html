@@ -49,14 +49,16 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 8px 28px;
+      padding: 0 28px;
+      height: 64px;
       position: sticky;
       top: 0;
       z-index: 200;
+      overflow: visible;
     }
 
     .logo { display: flex; align-items: center; }
-    .logo img { height: 52px; width: auto; display: block; }
+    .logo img { height: 90px; width: auto; display: block; }
 
     .header-call {
       display: flex;
@@ -732,9 +734,9 @@
 
     /* ── MOBILE ── */
     @media (max-width: 767px) {
-      header { padding: 6px 10px; height: 52px; }
+      header { padding: 0 10px; height: 52px; overflow: visible; }
       .header-phone { display: none; }
-      .logo img { height: 44px; }
+      .logo img { height: 72px; }
       .btn-sm { font-size: .78rem; padding: 7px 12px; }
       .btn-sm-imsg { display: inline-flex; }
 
