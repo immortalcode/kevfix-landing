@@ -568,6 +568,37 @@
       border-radius: 3px;
     }
 
+    /* ── STOREFRONT BANNER ── */
+    .storefront-banner {
+      position: relative;
+      width: 100%;
+      height: 260px;
+      overflow: hidden;
+    }
+    .storefront-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      display: block;
+    }
+    .storefront-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.6) 0%, transparent 100%);
+      padding: 20px 24px 14px;
+    }
+    .storefront-overlay span {
+      color: rgba(255,255,255,.85);
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .3px;
+    }
+
+    @media (min-width: 768px) {
+      .storefront-banner { height: 340px; }
+    }
+
     /* ── SERVICES TICKER ── */
     .ticker-bar {
       background: var(--dark);
@@ -758,6 +789,14 @@
     <span class="ticker-item"><span class="ticker-dot"></span>PS5 &amp; Xbox Repair</span>
     <span class="ticker-item"><span class="ticker-dot"></span>Camera Repair</span>
     <span class="ticker-item"><span class="ticker-dot"></span>Speaker &amp; Mic Fix</span>
+  </div>
+</div>
+
+<!-- STOREFRONT HERO BANNER -->
+<div class="storefront-banner">
+  <img src="photos/facb4c75-f436-4c82-b77a-d2199652943d.jpeg" alt="KevFix Phone Repair - 5212 Colfax Ave, North Hollywood" />
+  <div class="storefront-overlay">
+    <span>5212 Colfax Ave · North Hollywood</span>
   </div>
 </div>
 
