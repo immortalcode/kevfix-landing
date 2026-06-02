@@ -568,10 +568,14 @@
       border-radius: 3px;
     }
 
+    .col-info-left  { grid-column: 1; }
+    .col-info-right { grid-column: 2; }
+
     /* ── TRUST PILLARS ── */
     .trust-row {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
+      height: 100%;
       gap: 14px;
     }
 
@@ -581,9 +585,10 @@
       border-radius: var(--radius);
       padding: 22px 20px;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 14px;
       box-shadow: var(--shadow);
+      flex: 1;
     }
 
     .trust-icon {
@@ -612,7 +617,8 @@
     }
 
     @media (max-width: 767px) {
-      .trust-row { grid-template-columns: 1fr; }
+      .col-info-left, .col-info-right { grid-column: 1; width: 100%; }
+      .trust-row { grid-template-columns: 1fr; height: auto; }
     }
 
     /* ── STOREFRONT CARD ── */
@@ -897,8 +903,8 @@
       </div>
     </div>
 
-    <!-- FULL WIDTH: address + hours -->
-    <div class="col-full">
+    <!-- LEFT: address + hours -->
+    <div class="col-info-left">
       <div class="card info-card-full">
         <a class="info-row" href="https://www.google.com/maps/search/KevFix+5212+Colfax+Ave+North+Hollywood+CA+91601" target="_blank" rel="noopener">
           <div class="info-icon">
@@ -932,8 +938,8 @@
       </div>
     </div>
 
-    <!-- FULL WIDTH: trust pillars -->
-    <div class="col-full">
+    <!-- RIGHT: trust pillars -->
+    <div class="col-info-right">
       <div class="trust-row">
         <div class="trust-item">
           <div class="trust-icon">
