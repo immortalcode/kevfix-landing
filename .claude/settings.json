@@ -83,7 +83,11 @@
       "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add photo manager to admin: drag to reorder, toggle visibility, delete\")",
       "Bash(curl -s -X POST https://api.vercel.com/v1/projects/prj_mmuwXuewhrp3k0hb7L8bhRTqziQo/deploy-hooks?teamId=team_ExrLZs6t1HPkK6AXfpQ4JBkf -H 'Authorization: Bearer vca_35o44nyPXptK9myg1ScuYYnHTg0nMRRR53zWKOOw7TswV8aAK12DJZfi' -H 'Content-Type: application/json' -d '{\"name\":\"photo-upload\",\"ref\":\"main\"}')",
       "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Fix layout \\(map height, gallery/reviews overlap, mobile whitespace\\), add photo upload with GitHub commit + auto-redeploy\")",
-      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Restructure layout: map matches call card height, address/hours full width, fix mobile whitespace\")"
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Restructure layout: map matches call card height, address/hours full width, fix mobile whitespace\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing pull --rebase)",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing stash)",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing stash pop)",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Move storefront banner below address/hours, above gallery\")"
     ]
   }
 }
