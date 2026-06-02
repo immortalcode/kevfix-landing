@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="KevFix – Phone repair in North Hollywood. Call (747) 230-7800. Located at 5212 Colfax Ave." />
   <title>KevFix – Phone Repair North Hollywood</title>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7C90HDQQQ1"></script>
+  <!-- Google tag (gtag.js) — Analytics + Ads -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18200564951"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-7C90HDQQQ1');
+    gtag('config', 'AW-18200564951');
   </script>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1403,6 +1404,10 @@
     el.addEventListener('click', () => {
       const event = el.getAttribute('data-track');
       fetch(`/api/track?event=${event}`, { method: 'POST' }).catch(() => {});
+      // Google Ads conversion — only on call
+      if (event === 'call' && typeof gtag !== 'undefined') {
+        gtag('event', 'conversion', { send_to: 'AW-18200564951/uCxQCIv34bccENep2uZD' });
+      }
     });
   });
 </script>
