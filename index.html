@@ -568,56 +568,29 @@
       border-radius: 3px;
     }
 
-    /* ── TRUST BAND ── */
-    .trust-band {
-      background: var(--dark);
+    /* ── TRUST PILLARS ── */
+    .trust-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .trust-item {
+      background: var(--white);
+      border: 1.5px solid var(--gray-200);
       border-radius: var(--radius);
-      padding: 36px 32px;
-      text-align: center;
+      padding: 22px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
       box-shadow: var(--shadow);
     }
 
-    .trust-headline {
-      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-      font-weight: 900;
-      color: var(--white);
-      letter-spacing: -.5px;
-      line-height: 1.25;
-      margin-bottom: 12px;
-    }
-    .trust-headline span { color: var(--blue); }
-
-    .trust-sub {
-      font-size: .9rem;
-      color: rgba(255,255,255,.55);
-      max-width: 520px;
-      margin: 0 auto 28px;
-      line-height: 1.6;
-    }
-
-    .trust-pillars {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
-      flex-wrap: wrap;
-    }
-
-    .trust-pillar {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 0 28px;
-      flex: 1;
-      min-width: 180px;
-      justify-content: center;
-    }
-
-    .trust-pillar-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: rgba(0,168,232,.15);
+    .trust-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(0,168,232,.1);
       color: var(--blue);
       display: flex;
       align-items: center;
@@ -625,34 +598,21 @@
       flex-shrink: 0;
     }
 
-    .trust-pillar-text {
-      display: flex;
-      flex-direction: column;
-      text-align: left;
-    }
-    .trust-pillar-text strong {
+    .trust-title {
       font-size: .9rem;
       font-weight: 800;
-      color: var(--white);
-    }
-    .trust-pillar-text span {
-      font-size: .75rem;
-      color: rgba(255,255,255,.45);
-      margin-top: 2px;
+      color: var(--text);
+      margin-bottom: 4px;
     }
 
-    .trust-divider {
-      width: 1px;
-      height: 40px;
-      background: rgba(255,255,255,.1);
-      flex-shrink: 0;
+    .trust-desc {
+      font-size: .8rem;
+      color: var(--gray-500);
+      line-height: 1.5;
     }
 
-    @media (max-width: 600px) {
-      .trust-band { padding: 28px 20px; }
-      .trust-divider { display: none; }
-      .trust-pillars { gap: 16px; }
-      .trust-pillar { padding: 0; justify-content: flex-start; min-width: 0; width: 100%; }
+    @media (max-width: 767px) {
+      .trust-row { grid-template-columns: 1fr; }
     }
 
     /* ── STOREFRONT CARD ── */
@@ -972,43 +932,34 @@
       </div>
     </div>
 
-    <!-- FULL WIDTH: trust / price statement -->
+    <!-- FULL WIDTH: trust pillars -->
     <div class="col-full">
-      <div class="trust-band">
-        <div class="trust-headline">
-          Best Price &amp; Fastest Fix in North Hollywood —
-          <span>We Guarantee It.</span>
+      <div class="trust-row">
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
+          <div>
+            <p class="trust-title">Lowest Price, Guaranteed</p>
+            <p class="trust-desc">Find it cheaper nearby? We'll beat it — no questions asked.</p>
+          </div>
         </div>
-        <p class="trust-sub">We're confident you won't find a better deal or faster turnaround anywhere nearby. If you do, we'll beat it.</p>
-        <div class="trust-pillars">
-          <div class="trust-pillar">
-            <div class="trust-pillar-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-            </div>
-            <div class="trust-pillar-text">
-              <strong>Price Match</strong>
-              <span>Find it cheaper? We'll beat it</span>
-            </div>
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
-          <div class="trust-divider"></div>
-          <div class="trust-pillar">
-            <div class="trust-pillar-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            </div>
-            <div class="trust-pillar-text">
-              <strong>Under 1 Hour</strong>
-              <span>Most repairs same day</span>
-            </div>
+          <div>
+            <p class="trust-title">Most Repairs Under 1 Hour</p>
+            <p class="trust-desc">We work fast so you're not waiting around all day.</p>
           </div>
-          <div class="trust-divider"></div>
-          <div class="trust-pillar">
-            <div class="trust-pillar-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <div class="trust-pillar-text">
-              <strong>No Fix, No Charge</strong>
-              <span>If we can't fix it, you don't pay</span>
-            </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <p class="trust-title">No Fix, No Charge</p>
+            <p class="trust-desc">If we can't repair it, you don't pay. Simple as that.</p>
           </div>
         </div>
       </div>
