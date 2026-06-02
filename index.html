@@ -268,6 +268,21 @@
     }
     .alt-btn:hover { background: var(--gray-50); border-color: var(--gray-400); }
 
+    /* ── SATISFACTION BADGE ── */
+    .satisfaction-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(34,197,94,.08);
+      border: 1.5px solid rgba(34,197,94,.25);
+      color: #16a34a;
+      font-size: .8rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 50px;
+      margin-bottom: 14px;
+    }
+
     /* ── RATING BADGES ── */
     .rating-badges {
       display: flex;
@@ -922,6 +937,10 @@
             </svg>
             iMessage
           </a>
+        </div>
+        <div class="satisfaction-badge">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          100% Satisfaction Guaranteed
         </div>
         <div class="rating-badges">
           <!-- Google -->
