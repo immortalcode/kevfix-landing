@@ -92,7 +92,13 @@
     .page {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 36px 24px 140px;
+      padding: 36px 24px 20px;
+    }
+
+    .page-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 24px 140px;
     }
 
     /* two-col on desktop */
@@ -683,7 +689,8 @@
       .logo img { height: 44px; }
       .btn-sm { font-size: .8rem; padding: 8px 14px; }
 
-      .page { padding: 16px 12px 120px; }
+      .page { padding: 16px 12px 8px; }
+      .page-section { padding: 8px 12px 120px; }
 
       /* dump the grid entirely on mobile — simple flex column */
       .layout {
@@ -906,15 +913,19 @@
       </div>
     </div>
 
-    <!-- FULL WIDTH: storefront banner -->
-    <div class="col-full">
-      <div class="storefront-banner card">
-        <img src="photos/facb4c75-f436-4c82-b77a-d2199652943d.jpeg" alt="KevFix Phone Repair - 5212 Colfax Ave, North Hollywood" />
-        <div class="storefront-overlay">
-          <span>5212 Colfax Ave · North Hollywood</span>
-        </div>
-      </div>
-    </div>
+  </div>
+</main>
+
+<!-- STOREFRONT BANNER — true full bleed -->
+<div class="storefront-banner">
+  <img src="photos/facb4c75-f436-4c82-b77a-d2199652943d.jpeg" alt="KevFix Phone Repair - 5212 Colfax Ave, North Hollywood" />
+  <div class="storefront-overlay">
+    <span>5212 Colfax Ave · North Hollywood</span>
+  </div>
+</div>
+
+<section class="page-section">
+  <div class="layout">
 
     <!-- FULL WIDTH: photo gallery -->
     <div class="col-full">
@@ -1047,9 +1058,8 @@
     </div>
 
   </div>
-</main>
+</section>
 
-<!-- FLOATING CALL (mobile only) -->
 <div class="float-cta">
   <a href="tel:+17472307800" data-track="call">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
