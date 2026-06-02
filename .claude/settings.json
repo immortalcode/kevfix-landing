@@ -91,7 +91,8 @@
       "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Fix storefront banner crop on desktop, shrink desktop header\")",
       "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Fix structure: true full-bleed storefront banner between two sections\")",
       "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Fix storefront banner: show top of image so sign is visible\")",
-      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Storefront image: full uncropped, same width as gallery\")"
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Storefront image: full uncropped, same width as gallery\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add trust/price guarantee section with 3 pillars\")"
     ]
   }
 }
