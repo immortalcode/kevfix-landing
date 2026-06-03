@@ -1605,6 +1605,7 @@
     const closeBtn = document.getElementById('popupClose');
     const dismissBtn = document.getElementById('popupDismiss');
     let triggered = false;
+    let hasScrolled = false;
 
     function showPopup() {
       if (triggered) return;
@@ -1617,13 +1618,19 @@
       localStorage.setItem(key, today);
     }
 
-    // Desktop: mouse leaves viewport from the top
-    document.addEventListener('mouseleave', e => {
-      if (e.clientY <= 5) showPopup();
+    // Desktop: mouse moves toward top of viewport
+    document.addEventListener('mousemove', e => {
+      if (e.clientY < 30) showPopup();
     });
 
-    // Mobile: back button / page hide (user navigating away)
-    window.addEventListener('pagehide', showPopup);
+    // Mobile: user scrolls down then back up to top = exit intent
+    let lastScrollY = 0;
+    window.addEventListener('scroll', () => {
+      const current = window.scrollY;
+      if (current > 300) hasScrolled = true;
+      if (hasScrolled && current < 80 && lastScrollY > 200) showPopup();
+      lastScrollY = current;
+    }, { passive: true });
 
     closeBtn.addEventListener('click', closePopup);
     dismissBtn.addEventListener('click', closePopup);
