@@ -728,6 +728,106 @@
       .services-list { grid-template-columns: repeat(2, 1fr); }
     }
 
+    /* ── FIRST VISIT POPUP ── */
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s ease;
+    }
+    .popup-overlay.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .popup-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 36px 32px 28px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 24px 60px rgba(0,0,0,.25);
+      transform: translateY(20px);
+      transition: transform .3s ease;
+    }
+    .popup-overlay.show .popup-card { transform: translateY(0); }
+
+    .popup-close {
+      position: absolute;
+      top: 14px; right: 14px;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      border: none;
+      background: var(--gray-100);
+      color: var(--gray-500);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .popup-close:hover { background: var(--gray-200); }
+
+    .popup-icon { font-size: 2.5rem; margin-bottom: 12px; }
+
+    .popup-title {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--text);
+      letter-spacing: -.5px;
+      margin-bottom: 12px;
+    }
+
+    .popup-body {
+      font-size: .9rem;
+      color: var(--text-muted, var(--gray-500));
+      line-height: 1.65;
+      margin-bottom: 8px;
+    }
+    .popup-body strong { color: var(--text); }
+
+    .popup-note {
+      font-size: .75rem;
+      color: var(--gray-500);
+      margin-bottom: 22px;
+    }
+
+    .popup-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 800;
+      font-size: .95rem;
+      padding: 14px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: background .2s;
+    }
+    .popup-cta:hover { background: var(--blue-dk); }
+
+    .popup-dismiss {
+      background: none;
+      border: none;
+      font-size: .8rem;
+      color: var(--gray-500);
+      cursor: pointer;
+      font-family: inherit;
+      padding: 4px 8px;
+    }
+    .popup-dismiss:hover { color: var(--text); }
+
     /* ── STOREFRONT CARD ── */
     .storefront-card {
       overflow: hidden;
@@ -1324,6 +1424,24 @@
   </div>
 </main>
 
+<!-- FIRST VISIT POPUP -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup-card" id="popupCard">
+    <button class="popup-close" id="popupClose" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="popup-icon">🎁</div>
+    <h2 class="popup-title">First Repair Special!</h2>
+    <p class="popup-body">Drop your device in and <strong>mention this when you arrive</strong> — we'll hook you up with a special discount or gift on your first repair.</p>
+    <p class="popup-note">Walk-ins welcome · North Hollywood</p>
+    <a class="popup-cta" href="tel:+17472307800" data-track="call">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Call Now to Claim
+    </a>
+    <button class="popup-dismiss" id="popupDismiss">Maybe later</button>
+  </div>
+</div>
+
 <!-- DESKTOP FLOATING BUTTONS -->
 <div class="float-desktop">
   <a class="float-desktop-btn float-desktop-call" href="tel:+17472307800" data-track="call">
@@ -1467,6 +1585,27 @@
       opensMsg.textContent = `Opens ${label} at 10:00 AM`;
       opensMsg.style.display = 'block';
     }
+  })();
+
+  // ── FIRST VISIT POPUP ──
+  (function() {
+    const key = 'kf_popup_seen';
+    const today = new Date().toLocaleDateString('en-CA');
+    if (localStorage.getItem(key) === today) return; // already seen today
+
+    const overlay = document.getElementById('popupOverlay');
+    const closeBtn = document.getElementById('popupClose');
+    const dismissBtn = document.getElementById('popupDismiss');
+
+    function closePopup() {
+      overlay.classList.remove('show');
+      localStorage.setItem(key, today);
+    }
+
+    setTimeout(() => overlay.classList.add('show'), 4000);
+    closeBtn.addEventListener('click', closePopup);
+    dismissBtn.addEventListener('click', closePopup);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closePopup(); });
   })();
 
   // ── SERVICES ──
