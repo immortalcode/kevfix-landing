@@ -1439,7 +1439,7 @@
     <div class="popup-icon">
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00a8e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
     </div>
-    <h2 class="popup-title">Before You Go!</h2>
+    <h2 class="popup-title">First Repair Special!</h2>
     <p class="popup-body">Drop your device in and <strong>mention this when you arrive</strong> — we'll hook you up with a special discount or gift on your first repair.</p>
     <p class="popup-note">Walk-ins welcome · North Hollywood</p>
     <a class="popup-cta" href="tel:+17472307800" data-track="call">
@@ -1595,17 +1595,15 @@
     }
   })();
 
-  // ── EXIT INTENT POPUP ──
+  // ── SCROLL-TRIGGERED POPUP (70% of page) ──
   (function() {
     const key = 'kf_popup_seen';
-    const today = new Date().toLocaleDateString('en-CA');
-    if (localStorage.getItem(key) === today) return;
+    if (sessionStorage.getItem(key)) return; // once per session
 
-    const overlay = document.getElementById('popupOverlay');
+    const overlay  = document.getElementById('popupOverlay');
     const closeBtn = document.getElementById('popupClose');
     const dismissBtn = document.getElementById('popupDismiss');
     let triggered = false;
-    let hasScrolled = false;
 
     function showPopup() {
       if (triggered) return;
@@ -1615,21 +1613,13 @@
 
     function closePopup() {
       overlay.classList.remove('show');
-      localStorage.setItem(key, today);
+      sessionStorage.setItem(key, '1');
     }
 
-    // Desktop: mouse moves toward top of viewport
-    document.addEventListener('mousemove', e => {
-      if (e.clientY < 30) showPopup();
-    });
-
-    // Mobile: user scrolls down then back up to top = exit intent
-    let lastScrollY = 0;
     window.addEventListener('scroll', () => {
-      const current = window.scrollY;
-      if (current > 300) hasScrolled = true;
-      if (hasScrolled && current < 80 && lastScrollY > 200) showPopup();
-      lastScrollY = current;
+      const scrolled = window.scrollY + window.innerHeight;
+      const total = document.body.scrollHeight;
+      if (scrolled / total >= 0.70) showPopup();
     }, { passive: true });
 
     closeBtn.addEventListener('click', closePopup);
