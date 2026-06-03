@@ -776,7 +776,13 @@
     }
     .popup-close:hover { background: var(--gray-200); }
 
-    .popup-icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .popup-icon {
+      width: 64px; height: 64px;
+      border-radius: 18px;
+      background: rgba(0,168,232,.1);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
 
     .popup-title {
       font-size: 1.4rem;
@@ -1430,8 +1436,10 @@
     <button class="popup-close" id="popupClose" aria-label="Close">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
-    <div class="popup-icon">🎁</div>
-    <h2 class="popup-title">First Repair Special!</h2>
+    <div class="popup-icon">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00a8e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+    </div>
+    <h2 class="popup-title">Before You Go!</h2>
     <p class="popup-body">Drop your device in and <strong>mention this when you arrive</strong> — we'll hook you up with a special discount or gift on your first repair.</p>
     <p class="popup-note">Walk-ins welcome · North Hollywood</p>
     <a class="popup-cta" href="tel:+17472307800" data-track="call">
@@ -1587,22 +1595,36 @@
     }
   })();
 
-  // ── FIRST VISIT POPUP ──
+  // ── EXIT INTENT POPUP ──
   (function() {
     const key = 'kf_popup_seen';
     const today = new Date().toLocaleDateString('en-CA');
-    if (localStorage.getItem(key) === today) return; // already seen today
+    if (localStorage.getItem(key) === today) return;
 
     const overlay = document.getElementById('popupOverlay');
     const closeBtn = document.getElementById('popupClose');
     const dismissBtn = document.getElementById('popupDismiss');
+    let triggered = false;
+
+    function showPopup() {
+      if (triggered) return;
+      triggered = true;
+      overlay.classList.add('show');
+    }
 
     function closePopup() {
       overlay.classList.remove('show');
       localStorage.setItem(key, today);
     }
 
-    setTimeout(() => overlay.classList.add('show'), 4000);
+    // Desktop: mouse leaves viewport from the top
+    document.addEventListener('mouseleave', e => {
+      if (e.clientY <= 5) showPopup();
+    });
+
+    // Mobile: back button / page hide (user navigating away)
+    window.addEventListener('pagehide', showPopup);
+
     closeBtn.addEventListener('click', closePopup);
     dismissBtn.addEventListener('click', closePopup);
     overlay.addEventListener('click', e => { if (e.target === overlay) closePopup(); });
