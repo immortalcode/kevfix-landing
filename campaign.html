@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KevFix – Professional Device Service · North Hollywood</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Google tag (gtag.js) — Analytics + Ads -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18200564951"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7C90HDQQQ1');
+    gtag('config', 'AW-18200564951');
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #f8f9fa;
+      color: #111827;
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e1e4e8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+    }
+    header img { height: 52px; width: auto; display: block; }
+
+    /* MAIN */
+    .page {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 32px 16px 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid #e1e4e8;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+      overflow: hidden;
+    }
+
+    /* CALL CARD */
+    .call-card {
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .eyebrow {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #6b7280;
+      margin-bottom: 10px;
+    }
+    .phone-number {
+      display: block;
+      font-size: clamp(2rem, 8vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: #111827;
+      text-decoration: none;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .phone-number:hover { color: #0077b6; }
+
+    .btn-call {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #00a8e8;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 16px;
+      border-radius: 50px;
+      text-decoration: none;
+      margin-bottom: 10px;
+    }
+    .btn-imsg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #f3f4f6;
+      color: #111827;
+      font-weight: 700;
+      font-size: .95rem;
+      padding: 13px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: 1.5px solid #e1e4e8;
+    }
+
+    /* TRUST LINE */
+    .trust-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: .78rem;
+      color: #6b7280;
+      font-weight: 500;
+      margin-top: 14px;
+    }
+    .trust-line svg { color: #00a8e8; }
+
+    /* RATING */
+    .rating-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    .rating-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #f8f9fa;
+      border: 1px solid #e1e4e8;
+      border-radius: 50px;
+      padding: 5px 14px;
+      font-size: .85rem;
+    }
+    .stars { color: #f59e0b; }
+    .rating-num { font-weight: 800; }
+    .rating-total { color: #6b7280; font-size: .78rem; }
+
+    /* INFO ROWS */
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 20px;
+      border-bottom: 1px solid #f0f2f5;
+      text-decoration: none;
+      color: inherit;
+      transition: background .15s;
+    }
+    .info-row:last-child { border-bottom: none; }
+    a.info-row:hover { background: #f8f9fa; }
+    .info-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: #f0f2f5;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: #0077b6;
+    }
+    .info-label {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+    .info-value { font-size: .975rem; font-weight: 600; line-height: 1.45; }
+    .hours-grid { display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; }
+    .hours-day { font-size: .9rem; font-weight: 600; }
+    .hours-time { font-size: .9rem; color: #6b7280; }
+    .closed { color: #ef4444; font-weight: 600; }
+    .chevron { color: #e1e4e8; align-self: center; flex-shrink: 0; }
+
+    /* TRUST CARDS */
+    .trust-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .trust-item {
+      background: #fff;
+      border: 1.5px solid #e1e4e8;
+      border-radius: 14px;
+      padding: 18px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+    .trust-icon {
+      width: 36px; height: 36px;
+      border-radius: 9px;
+      background: rgba(0,168,232,.1);
+      color: #00a8e8;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .trust-title { font-size: .85rem; font-weight: 800; color: #111827; margin-bottom: 3px; }
+    .trust-desc { font-size: .75rem; color: #6b7280; line-height: 1.4; }
+
+    /* FLOATING CTA */
+    .float-cta {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 300;
+      padding: 12px 16px env(safe-area-inset-bottom, 0px);
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid #e1e4e8;
+    }
+    .float-cta-inner { display: flex; gap: 10px; }
+    .float-btn {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      gap: 8px; font-weight: 800; font-size: 1rem;
+      padding: 14px; border-radius: 50px; text-decoration: none;
+    }
+    .float-call { background: #00a8e8; color: #fff; }
+    .float-imsg { background: #f3f4f6; color: #111827; border: 1.5px solid #e1e4e8; }
+
+    @media (min-width: 640px) { .float-cta { display: none; } .page { padding-bottom: 40px; } }
+    @media (max-width: 480px) { .trust-row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="kevfix-logo.png" alt="KevFix" />
+</header>
+
+<main class="page">
+
+  <!-- CALL CARD -->
+  <div class="card call-card">
+    <p class="eyebrow">Reach us directly</p>
+    <a class="phone-number" href="tel:+17472307800">(747) 230-7800</a>
+    <a class="btn-call" href="tel:+17472307800" id="callBtn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Call Now
+    </a>
+    <a class="btn-imsg" href="sms:+17472307800" id="msgBtn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      Send a Message
+    </a>
+    <div class="trust-line">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      Same-day service available · Walk-ins welcome
+    </div>
+    <div class="rating-row">
+      <div class="rating-pill">
+        <span class="stars">★★★★★</span>
+        <span class="rating-num">5.0</span>
+        <span class="rating-total">· 100+ reviews</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADDRESS + HOURS -->
+  <div class="card">
+    <a class="info-row" href="https://www.google.com/maps/search/KevFix+5212+Colfax+Ave+North+Hollywood+CA+91601" target="_blank" rel="noopener">
+      <div class="info-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div style="flex:1">
+        <div class="info-label">Address</div>
+        <div class="info-value">5212 Colfax Ave<br>North Hollywood, CA 91601</div>
+      </div>
+      <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <div class="info-row">
+      <div class="info-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div style="flex:1">
+        <div class="info-label">Hours</div>
+        <div class="hours-grid">
+          <span class="hours-day">Mon – Sat</span><span class="hours-time">10:00 AM – 7:00 PM</span>
+          <span class="hours-day">Sunday</span><span class="hours-time closed">Closed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRUST -->
+  <div class="trust-row">
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div>
+        <p class="trust-title">Same-Day Service</p>
+        <p class="trust-desc">Most jobs completed the same day you come in.</p>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+      </div>
+      <div>
+        <p class="trust-title">Best Prices Around</p>
+        <p class="trust-desc">Our customers say we're the most affordable in the area.</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FLOATING CTA -->
+<div class="float-cta">
+  <div class="float-cta-inner">
+    <a class="float-btn float-call" href="tel:+17472307800" id="floatCallBtn">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Call Now
+    </a>
+    <a class="float-btn float-imsg" href="sms:+17472307800" id="floatMsgBtn">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      iMessage
+    </a>
+  </div>
+</div>
+
+<script>
+  // Google Ads conversion on call
+  ['callBtn','floatCallBtn'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', () => {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'conversion', { send_to: 'AW-18200564951/uCxQCIv34bccENep2uZD' });
+      }
+    });
+  });
+</script>
+</body>
+</html>

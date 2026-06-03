@@ -4,6 +4,7 @@
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/$1" },
     { "src": "/admin", "dest": "/admin.html" },
+    { "src": "/campaign", "dest": "/campaign.html" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }

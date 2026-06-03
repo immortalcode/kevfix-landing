@@ -113,7 +113,12 @@
       "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add services list above photo gallery\")",
       "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Move services above reviews, add 'and more' line\")",
       "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Bold 'same day' in subtitle, add best prices line below call button\")",
-      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add service manager to admin: add, reorder, toggle, delete\")"
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add service manager to admin: add, reorder, toggle, delete\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add first-visit popup with first repair special offer\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Popup: exit intent trigger, replace emoji with SVG gift icon\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Fix exit intent: mousemove threshold on desktop, scroll-back trigger on mobile\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Popup: switch to 70% scroll trigger, once per session\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add /campaign page — clean Google Ads landing, no flagged terms\")"
     ]
   }
 }
