@@ -93,7 +93,27 @@
       "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Fix storefront banner: show top of image so sign is visible\")",
       "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Storefront image: full uncropped, same width as gallery\")",
       "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add trust/price guarantee section with 3 pillars\")",
-      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Redesign trust section: clean white cards matching site style\")"
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Redesign trust section: clean white cards matching site style\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Remove No Fix No Charge pillar, 2-col trust layout\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Place trust cards beside address/hours card in 2-col layout\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Move testimonials above storefront photo\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Soften price claim — customer-backed statement\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Rename text button to iMessage, add iMessage to mobile floating CTA\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add iMessage button to mobile header alongside Call Now\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Bigger logo in fixed-height header, overflow visible so bar stays slim\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add floating Call Now + iMessage buttons on desktop \\(bottom right\\)\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add 100% Satisfaction Guaranteed badge to call card\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Move 100% Satisfaction Guaranteed badge to reviews header\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Move satisfaction badge to its own centered row below reviews header\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Clean up reviews: verified Yelp only, source labels, rename header to Customer Reviews\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add 10 verified Google reviews with Google badge to slider\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add Google Analytics \\(G-7C90HDQQQ1\\)\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add Google Ads conversion tracking on call button click\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add Microsoft Clarity session recording \\(x0wlgncyea\\)\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add services list above photo gallery\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Move services above reviews, add 'and more' line\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Bold 'same day' in subtitle, add best prices line below call button\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add service manager to admin: add, reorder, toggle, delete\")"
     ]
   }
 }

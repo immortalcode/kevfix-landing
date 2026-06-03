@@ -470,6 +470,26 @@
       <div class="photo-list" id="photoList"></div>
     </div>
 
+    <!-- SERVICE MANAGER -->
+    <div style="margin-top:36px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px;">
+        <p class="section-title" style="margin:0">Services</p>
+        <button class="save-photos-btn" id="saveServicesBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          Save
+        </button>
+      </div>
+      <p style="font-size:.78rem;color:#4b5563;margin-bottom:14px;">Drag to reorder · Toggle eye to show/hide · Trash to delete</p>
+
+      <!-- Add new service -->
+      <div style="display:flex;gap:8px;margin-bottom:14px;">
+        <input id="newServiceInput" type="text" placeholder="New service name…" style="flex:1;background:#1f2937;border:1.5px solid #374151;border-radius:10px;padding:10px 14px;font-size:.85rem;color:#f9fafb;font-family:inherit;outline:none;" />
+        <button id="addServiceBtn" style="background:#00a8e8;color:#fff;border:none;border-radius:10px;padding:10px 16px;font-weight:700;font-size:.85rem;cursor:pointer;font-family:inherit;white-space:nowrap;">+ Add</button>
+      </div>
+
+      <div class="photo-list" id="serviceList"></div>
+    </div>
+
   </div>
 </div>
 
@@ -522,6 +542,7 @@
     if (data) renderStats(data);
     else loadStats();
     loadPhotos();
+    loadServices();
   }
 
   async function loadStats() {
@@ -701,6 +722,85 @@
     });
     btn.disabled = false;
     btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save Order`;
+  });
+
+  // ── SERVICE MANAGER ──
+  let services = [];
+  let svcDragSrc = null;
+
+  async function loadServices() {
+    const res = await fetch('/api/services');
+    const data = await res.json();
+    services = data.services || [];
+    renderServices();
+  }
+
+  function renderServices() {
+    const list = document.getElementById('serviceList');
+    list.innerHTML = '';
+    services.forEach((s, i) => {
+      const item = document.createElement('div');
+      item.className = 'photo-item' + (s.visible ? '' : ' hidden-photo');
+      item.draggable = true;
+      item.dataset.index = i;
+      item.innerHTML = `
+        <span class="drag-handle">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </span>
+        <span class="photo-name" style="font-size:.875rem;font-weight:600;color:#f9fafb;">${s.name}</span>
+        <div class="photo-actions">
+          <button class="ph-btn vis ${s.visible ? 'active-vis' : ''}" title="${s.visible ? 'Hide' : 'Show'}">
+            ${s.visible
+              ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`
+              : `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`}
+          </button>
+          <button class="ph-btn del" title="Delete">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg>
+          </button>
+        </div>`;
+
+      item.querySelector('.vis').addEventListener('click', () => { services[i].visible = !services[i].visible; renderServices(); });
+      item.querySelector('.del').addEventListener('click', () => { if (confirm('Delete "' + s.name + '"?')) { services.splice(i, 1); renderServices(); } });
+
+      item.addEventListener('dragstart', e => { svcDragSrc = i; item.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; });
+      item.addEventListener('dragend', () => document.querySelectorAll('#serviceList .photo-item').forEach(el => el.classList.remove('dragging','drag-over')));
+      item.addEventListener('dragover', e => { e.preventDefault(); item.classList.add('drag-over'); });
+      item.addEventListener('dragleave', () => item.classList.remove('drag-over'));
+      item.addEventListener('drop', e => {
+        e.preventDefault();
+        if (svcDragSrc === null || svcDragSrc === i) return;
+        const moved = services.splice(svcDragSrc, 1)[0];
+        services.splice(i, 0, moved);
+        svcDragSrc = null;
+        renderServices();
+      });
+
+      list.appendChild(item);
+    });
+  }
+
+  document.getElementById('addServiceBtn').addEventListener('click', () => {
+    const input = document.getElementById('newServiceInput');
+    const name = input.value.trim();
+    if (!name) return;
+    services.push({ name, visible: true });
+    input.value = '';
+    renderServices();
+  });
+  document.getElementById('newServiceInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('addServiceBtn').click();
+  });
+
+  document.getElementById('saveServicesBtn').addEventListener('click', async () => {
+    const btn = document.getElementById('saveServicesBtn');
+    btn.disabled = true; btn.textContent = 'Saving…';
+    await fetch(`/api/services?secret=${encodeURIComponent(adminSecret)}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ services }),
+    });
+    btn.disabled = false;
+    btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save`;
   });
 
   // Auto-refresh every 30 seconds
