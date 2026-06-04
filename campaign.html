@@ -333,14 +333,25 @@
 </div>
 
 <script>
-  // Google Ads conversion on call
+  function track(event) {
+    fetch(`/api/track?event=${event}`, { method: 'POST' }).catch(() => {});
+  }
+
+  // Call buttons — track + Google Ads conversion
   ['callBtn','floatCallBtn'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.addEventListener('click', () => {
+      track('call');
       if (typeof gtag !== 'undefined') {
         gtag('event', 'conversion', { send_to: 'AW-18200564951/uCxQCIv34bccENep2uZD' });
       }
     });
+  });
+
+  // iMessage buttons — track
+  ['msgBtn','floatMsgBtn'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', () => track('imessage'));
   });
 </script>
 </body>
