@@ -5,6 +5,8 @@
     { "src": "/api/(.*)", "dest": "/api/$1" },
     { "src": "/admin", "dest": "/admin.html" },
     { "src": "/campaign", "dest": "/campaign.html" },
+    { "src": "/", "status": 307, "headers": { "Location": "/campaign" } },
+    { "src": "/index.html", "status": 307, "headers": { "Location": "/campaign" } },
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }

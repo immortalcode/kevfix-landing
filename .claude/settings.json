@@ -118,7 +118,9 @@
       "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Popup: exit intent trigger, replace emoji with SVG gift icon\")",
       "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Fix exit intent: mousemove threshold on desktop, scroll-back trigger on mobile\")",
       "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Popup: switch to 70% scroll trigger, once per session\")",
-      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add /campaign page — clean Google Ads landing, no flagged terms\")"
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Add /campaign page — clean Google Ads landing, no flagged terms\")",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing add campaign.html)",
+      "Bash(git -C /Users/ohannesiskenderian/Desktop/KevFix-Landing commit -m \"Track call and iMessage clicks on campaign page in admin dashboard\")"
     ]
   }
 }

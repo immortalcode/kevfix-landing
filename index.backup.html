@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="KevFix – Phone repair in North Hollywood. Call (747) 230-7800. Located at 5212 Colfax Ave." />
+  <title>KevFix – Phone Repair North Hollywood</title>
+  <!-- Google tag (gtag.js) — Analytics + Ads -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18200564951"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7C90HDQQQ1');
+    gtag('config', 'AW-18200564951');
+  </script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "x0wlgncyea");
+  </script>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue:    #00a8e8;
+      --blue-dk: #0077b6;
+      --dark:    #111827;
+      --gray-50: #f8f9fa;
+      --gray-100:#f0f2f5;
+      --gray-200:#e1e4e8;
+      --gray-400:#9ca3af;
+      --gray-500:#6b7280;
+      --text:    #111827;
+      --white:   #ffffff;
+      --radius:  16px;
+      --shadow:  0 2px 16px rgba(0,0,0,.08);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--gray-50);
+      color: var(--text);
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      overflow: visible;
+    }
+
+    .logo { display: flex; align-items: center; }
+    .logo img { height: 90px; width: auto; display: block; }
+
+    .header-call {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-sm-imsg { display: none; }
+
+    .header-phone {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .header-phone:hover { color: var(--blue-dk); }
+
+    .btn-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 700;
+      font-size: .875rem;
+      padding: 10px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+      white-space: nowrap;
+    }
+    .btn-sm:hover { background: var(--blue-dk); transform: translateY(-1px); }
+    .btn-sm-imsg {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--gray-200);
+    }
+    .btn-sm-imsg:hover { background: var(--gray-100); border-color: var(--gray-400); transform: translateY(-1px); }
+
+    /* ── PAGE LAYOUT ── */
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 36px 24px 140px;
+    }
+
+    /* two-col on desktop */
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    /* LEFT column: call card only */
+    .col-left {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    /* RIGHT column: map stretches to match left */
+    .col-right {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    /* full-width rows — auto placed */
+    .col-full {
+      grid-column: 1 / -1;
+    }
+
+    .info-card-full .info-row {
+      display: flex;
+      flex: 1;
+    }
+
+    /* ── CARD BASE ── */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    /* ── CALL CARD ── */
+    .call-card {
+      padding: 32px 28px;
+      text-align: center;
+    }
+
+    .hero-address {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color .15s;
+    }
+    .hero-address:hover { color: var(--blue); }
+
+    .call-eyebrow {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      margin-bottom: 12px;
+    }
+
+    .call-number {
+      display: block;
+      font-size: clamp(2.2rem, 5vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      color: var(--text);
+      text-decoration: none;
+      line-height: 1;
+      margin-bottom: 20px;
+      transition: color .15s;
+    }
+    .call-number:hover { color: var(--blue-dk); }
+
+    .btn-call {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 17px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .btn-call:hover { background: var(--blue-dk); transform: translateY(-1px); }
+    .btn-call:active { transform: translateY(0); }
+
+    /* ── ROTATING HEADLINE ── */
+    .rotating-headline {
+      text-align: center;
+      padding: 8px 4px 4px;
+    }
+
+    .rh-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 0;
+    }
+
+    .rh-text {
+      font-size: clamp(2rem, 7vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      color: var(--text);
+      line-height: 1.1;
+      transition: opacity .35s ease, transform .35s ease;
+    }
+
+    .rh-text.fade-out {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    .rh-text.fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .rh-sub {
+      font-size: .95rem;
+      color: var(--gray-500);
+      margin-top: 6px;
+      font-weight: 500;
+    }
+    .rh-sub strong { color: var(--text); }
+
+    .best-price-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--gray-500);
+      margin: 10px 0 14px;
+    }
+    .best-price-line svg { color: var(--blue); flex-shrink: 0; }
+
+    /* ── ALT CONTACT BUTTONS ── */
+    .alt-contact {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .alt-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      flex: 1;
+      padding: 13px 16px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: .9rem;
+      text-decoration: none;
+      border: 1.5px solid var(--gray-200);
+      background: var(--white);
+      color: var(--text);
+      transition: background .15s, border-color .15s;
+    }
+    .alt-btn:hover { background: var(--gray-50); border-color: var(--gray-400); }
+
+    /* ── SATISFACTION BADGE ── */
+    .satisfaction-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(34,197,94,.08);
+      border: 1.5px solid rgba(34,197,94,.25);
+      color: #16a34a;
+      font-size: .8rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 50px;
+      margin-bottom: 14px;
+    }
+
+    /* ── RATING BADGES ── */
+    .rating-badges {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 18px;
+    }
+
+    .rating-badge-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gray-50);
+      border: 1.5px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 8px 14px;
+      flex: 1;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    a.rating-badge-item:hover {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(0,168,232,.1);
+    }
+
+    .badge-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .badge-platform {
+      font-size: .68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: var(--gray-500);
+    }
+
+    .badge-stars {
+      font-size: .82rem;
+      color: #f59e0b;
+    }
+
+    .badge-stars strong {
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    /* ── INFO ROWS ── */
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--gray-100);
+      text-decoration: none;
+      color: inherit;
+      transition: background .15s;
+    }
+    .info-row:last-child { border-bottom: none; }
+    a.info-row:hover { background: var(--gray-50); }
+
+    .info-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--blue-dk);
+    }
+
+    .info-content { flex: 1; }
+
+    .info-label {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      margin-bottom: 5px;
+    }
+
+    .info-value {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    .open-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .68rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 50px;
+      letter-spacing: .3px;
+    }
+    .open-badge.open   { background: rgba(34,197,94,.12); color: #16a34a; }
+    .open-badge.closed { background: rgba(239,68,68,.1);  color: #ef4444; }
+    .open-badge .dot {
+      width: 5px; height: 5px; border-radius: 50%; background: currentColor;
+    }
+
+    .hours-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 3px 14px;
+    }
+    .hours-day  { font-size: .925rem; font-weight: 600; }
+    .hours-time { font-size: .925rem; color: var(--gray-500); }
+    .closed     { color: #ef4444; font-weight: 600; }
+
+    .chevron { color: var(--gray-200); flex-shrink: 0; align-self: center; }
+
+    /* ── MAP ── */
+    .map-card { height: 100%; display: flex; flex-direction: column; min-height: 300px; }
+    .map-card iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+      display: block;
+      min-height: 280px;
+    }
+
+    /* ── PHOTO GALLERY ── */
+    .gallery-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 22px 14px;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .gallery-title {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .gallery-more {
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--blue);
+      text-decoration: none;
+    }
+    .gallery-more:hover { text-decoration: underline; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 3px;
+      padding: 3px;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      border-radius: 6px;
+      transition: opacity .2s;
+    }
+    .gallery-grid img:hover { opacity: .9; cursor: zoom-in; }
+
+    @media (max-width: 767px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid img { height: 150px; }
+    }
+
+    /* ── REVIEWS SLIDER ── */
+    .reviews-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 28px 16px;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .reviews-title {
+      font-size: .95rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .g-logo { width: 22px; height: 22px; flex-shrink: 0; }
+
+    .rating-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 50px;
+      padding: 5px 14px;
+    }
+    .stars     { color: #f59e0b; font-size: .9rem; }
+    .rating-num { font-size: .875rem; font-weight: 800; }
+    .rating-total { font-size: .78rem; color: var(--gray-500); }
+
+    /* Slider track */
+    .slider-wrap {
+      position: relative;
+    }
+
+    .slider-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 0;
+      padding: 24px 28px;
+      gap: 16px;
+    }
+    .slider-track::-webkit-scrollbar { display: none; }
+
+    .review-card {
+      flex: 0 0 300px;
+      scroll-snap-align: start;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .review-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dk) 100%);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: .82rem;
+      flex-shrink: 0;
+    }
+
+    .reviewer-name  { font-weight: 700; font-size: .875rem; }
+    .review-stars-sm { color: #f59e0b; font-size: .78rem; letter-spacing: 1px; margin-top: 1px; }
+    .review-header { display: flex; align-items: center; justify-content: space-between; }
+    .review-stars { color: #f59e0b; font-size: .9rem; letter-spacing: 1px; }
+    .review-source {
+      font-size: .68rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 50px;
+      letter-spacing: .3px;
+    }
+    .yelp-badge { background: rgba(196,18,0,.08); color: #c41200; }
+    .google-badge-pill { background: rgba(66,133,244,.08); color: #4285f4; }
+
+    .review-body {
+      font-size: .875rem;
+      color: var(--gray-500);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    /* Slider nav buttons */
+    .slider-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 28px 20px;
+    }
+
+    .nav-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gray-200);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text);
+      transition: border-color .2s, background .2s;
+      flex-shrink: 0;
+    }
+    .nav-btn:hover { border-color: var(--blue); background: var(--gray-50); color: var(--blue); }
+    .nav-btn:disabled { opacity: .3; cursor: default; }
+
+    .slider-dots {
+      display: flex;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gray-200);
+      transition: background .2s, width .2s;
+      cursor: pointer;
+    }
+    .dot.active {
+      background: var(--blue);
+      width: 20px;
+      border-radius: 3px;
+    }
+
+    .col-info-left  { grid-column: 1; }
+    .col-info-right { grid-column: 2; }
+
+    /* ── TRUST PILLARS ── */
+    .trust-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      height: 100%;
+      gap: 14px;
+    }
+
+    .trust-item {
+      background: var(--white);
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: var(--shadow);
+      flex: 1;
+    }
+
+    .trust-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(0,168,232,.1);
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .trust-title {
+      font-size: .9rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .trust-desc {
+      font-size: .8rem;
+      color: var(--gray-500);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 767px) {
+      .col-info-left, .col-info-right { grid-column: 1; width: 100%; }
+      .trust-row { grid-template-columns: 1fr; height: auto; }
+    }
+
+    /* ── SERVICES LIST ── */
+    .services-card { padding: 24px 28px; }
+
+    .services-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .services-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .services-sub {
+      font-size: .78rem;
+      color: var(--gray-500);
+    }
+
+    .services-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px 16px;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .875rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .service-item svg { color: var(--blue); flex-shrink: 0; }
+    .service-more { color: var(--gray-500); font-style: italic; font-size: .82rem; }
+
+    @media (max-width: 767px) {
+      .services-card { padding: 20px 16px; }
+      .services-list { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ── FIRST VISIT POPUP ── */
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s ease;
+    }
+    .popup-overlay.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .popup-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 36px 32px 28px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 24px 60px rgba(0,0,0,.25);
+      transform: translateY(20px);
+      transition: transform .3s ease;
+    }
+    .popup-overlay.show .popup-card { transform: translateY(0); }
+
+    .popup-close {
+      position: absolute;
+      top: 14px; right: 14px;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      border: none;
+      background: var(--gray-100);
+      color: var(--gray-500);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .popup-close:hover { background: var(--gray-200); }
+
+    .popup-icon {
+      width: 64px; height: 64px;
+      border-radius: 18px;
+      background: rgba(0,168,232,.1);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .popup-title {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--text);
+      letter-spacing: -.5px;
+      margin-bottom: 12px;
+    }
+
+    .popup-body {
+      font-size: .9rem;
+      color: var(--text-muted, var(--gray-500));
+      line-height: 1.65;
+      margin-bottom: 8px;
+    }
+    .popup-body strong { color: var(--text); }
+
+    .popup-note {
+      font-size: .75rem;
+      color: var(--gray-500);
+      margin-bottom: 22px;
+    }
+
+    .popup-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 800;
+      font-size: .95rem;
+      padding: 14px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: background .2s;
+    }
+    .popup-cta:hover { background: var(--blue-dk); }
+
+    .popup-dismiss {
+      background: none;
+      border: none;
+      font-size: .8rem;
+      color: var(--gray-500);
+      cursor: pointer;
+      font-family: inherit;
+      padding: 4px 8px;
+    }
+    .popup-dismiss:hover { color: var(--text); }
+
+    /* ── STOREFRONT CARD ── */
+    .storefront-card {
+      overflow: hidden;
+    }
+    .storefront-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── SERVICES TICKER ── */
+    .ticker-bar {
+      background: var(--dark);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      overflow: hidden;
+      padding: 0;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 100vw;
+      position: relative;
+    }
+
+    .ticker-track {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      white-space: nowrap;
+      animation: ticker 28s linear infinite;
+      will-change: transform;
+    }
+
+    .ticker-bar:hover .ticker-track { animation-play-state: paused; }
+
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 32px;
+      font-size: .8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.75);
+      letter-spacing: .3px;
+      text-transform: uppercase;
+    }
+
+    .ticker-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--blue);
+      flex-shrink: 0;
+    }
+
+    /* ── FLOATING CALL (mobile) ── */
+    /* desktop floating buttons */
+    .float-desktop {
+      position: fixed;
+      right: 24px;
+      bottom: 40px;
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .float-desktop-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 20px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: .9rem;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0,0,0,.15);
+      transition: transform .15s, box-shadow .15s;
+      white-space: nowrap;
+    }
+    .float-desktop-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(0,0,0,.2); }
+
+    .float-desktop-call { background: var(--blue); color: var(--white); }
+    .float-desktop-imsg { background: var(--white); color: var(--text); border: 1.5px solid var(--gray-200); }
+
+    @media (max-width: 767px) { .float-desktop { display: none; } }
+
+    .float-cta {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 300;
+      padding: 12px 16px env(safe-area-inset-bottom, 0px);
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-top: 1px solid var(--gray-200);
+      display: none;
+    }
+
+    .float-cta-inner {
+      display: flex;
+      gap: 10px;
+    }
+
+    .float-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 14px;
+      border-radius: 50px;
+      text-decoration: none;
+    }
+
+    .float-call {
+      background: var(--blue);
+      color: var(--white);
+    }
+
+    .float-imsg {
+      background: var(--gray-100);
+      color: var(--text);
+      border: 1.5px solid var(--gray-200);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 767px) {
+      header { padding: 0 10px; height: 52px; overflow: visible; }
+      .header-phone { display: none; }
+      .logo img { height: 72px; }
+      .btn-sm { font-size: .78rem; padding: 7px 12px; }
+      .btn-sm-imsg { display: inline-flex; }
+
+      .page { padding: 16px 12px 120px; }
+
+      /* dump the grid entirely on mobile — simple flex column */
+      .layout {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .col-left {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        width: 100%;
+      }
+      .col-right { width: 100%; }
+      .col-full  { width: 100%; }
+      .map-card { height: auto; min-height: unset; }
+      .map-card iframe { flex: none; height: 220px; }
+
+      /* call card */
+      .call-card { padding: 28px 16px; }
+      .call-eyebrow { font-size: .72rem; }
+      .call-number {
+        font-size: 2rem;
+        letter-spacing: -0.5px;
+        margin-bottom: 16px;
+      }
+      .btn-call {
+        font-size: 1.1rem;
+        padding: 16px;
+        width: 100%;
+      }
+
+      /* info rows */
+      .info-row { padding: 16px 14px; gap: 12px; }
+      .info-icon { width: 40px; height: 40px; flex-shrink: 0; }
+      .info-value { font-size: .95rem; }
+
+      /* map */
+      .map-card { height: auto; }
+      .map-card iframe { min-height: 220px; }
+
+      /* reviews */
+      .reviews-header { padding: 14px 14px 10px; flex-wrap: wrap; gap: 8px; }
+      .slider-track { padding: 14px; gap: 12px; }
+      .review-card { flex: 0 0 80vw; padding: 16px; }
+      .slider-nav { padding: 0 14px 14px; }
+
+      /* floating cta */
+      .float-cta { display: block; }
+    }
+
+    /* tablet */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .review-card { flex: 0 0 340px; }
+      .map-card iframe { min-height: 360px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="logo" href="#">
+    <img src="kevfix-logo.png" alt="KevFix" />
+  </a>
+  <div class="header-call">
+    <a class="header-phone" href="tel:+17472307800">(747) 230-7800</a>
+    <a class="btn-sm btn-sm-imsg" href="sms:+17472307800" data-track="imessage">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+      </svg>
+      iMessage
+    </a>
+    <a class="btn-sm" href="tel:+17472307800" data-track="call">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+      </svg>
+      Call Now
+    </a>
+  </div>
+</header>
+
+<!-- SERVICES TICKER -->
+<div class="ticker-bar" aria-hidden="true">
+  <div class="ticker-track">
+    <!-- set 1 -->
+    <span class="ticker-item"><span class="ticker-dot"></span>Screen Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Battery Replacement</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Water Damage</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Charging Port</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Data Recovery</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>iPhone Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Android Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>iPad Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Samsung Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>PS5 &amp; Xbox Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Camera Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Speaker &amp; Mic Fix</span>
+    <!-- set 2 (duplicate for seamless loop) -->
+    <span class="ticker-item"><span class="ticker-dot"></span>Screen Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Battery Replacement</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Water Damage</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Charging Port</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Data Recovery</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>iPhone Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Android Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>iPad Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Samsung Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>PS5 &amp; Xbox Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Camera Repair</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Speaker &amp; Mic Fix</span>
+  </div>
+</div>
+
+<main class="page">
+  <div class="layout">
+
+    <!-- LEFT: call + contact info -->
+    <div class="col-left">
+
+      <!-- Rotating headline -->
+      <div class="rotating-headline">
+        <div class="rh-inner">
+          <span class="rh-text" id="rhText">Broken Screen?</span>
+        </div>
+        <p class="rh-sub">We fix it fast &mdash; <strong>same day</strong>, no hassle.</p>
+      </div>
+
+      <!-- Call card -->
+      <div class="card call-card">
+        <a class="hero-address" href="https://www.google.com/maps/search/KevFix+5212+Colfax+Ave+North+Hollywood+CA+91601" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          5212 Colfax Ave, North Hollywood
+        </a>
+        <p class="call-eyebrow">Tap to call us now</p>
+        <a class="call-number" href="tel:+17472307800">(747) 230-7800</a>
+        <p id="openBadgeCard" style="margin-bottom:14px;"></p>
+        <a class="btn-call" href="tel:+17472307800" data-track="call">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+          Call Now
+        </a>
+        <p class="best-price-line">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          Best prices in the area, guaranteed
+        </p>
+        <div class="alt-contact">
+          <a class="alt-btn" href="sms:+17472307800" data-track="imessage">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+            </svg>
+            iMessage
+          </a>
+        </div>
+        <div class="rating-badges">
+          <!-- Google -->
+          <a class="rating-badge-item" href="https://www.google.com/maps/search/KevFix+5212+Colfax+Ave+North+Hollywood+CA+91601" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+              <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+              <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+              <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+              <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+            </svg>
+            <div class="badge-text">
+              <span class="badge-platform">Google</span>
+              <span class="badge-stars">★★★★★ <strong>5.0</strong></span>
+            </div>
+          </a>
+          <!-- Yelp -->
+          <a class="rating-badge-item" href="https://www.yelp.com/biz/kevfix-north-hollywood" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+              <path fill="#c41200" d="M500 0C223.9 0 0 223.9 0 500s223.9 500 500 500 500-223.9 500-500S776.1 0 500 0zM387.2 653.5l-140 91.5c-12.8 8.2-29.8 2.3-35.4-11.8-10.5-27.2-15.7-56.4-15.7-86.6 0-29.8 5.2-58.7 14.8-85.6 5.2-14.4 22.6-20.3 35.4-12.1l140 89.2c15.4 9.8 15.7 32.1 1 43.4zm31.1-180.7L204.5 395c-15.1-6.6-19.3-25.9-8.9-38.4 43-51.5 100-89.8 165.3-108.5 15.1-4.3 29.8 6.9 29.8 22.6v156.1c0 18-17.7 29.5-49.5 18.7v27.3zm71.5-290.6c0-17.4 15.7-30.2 32.8-26.6 67.9 14.4 128.6 47.9 176.2 95.5 11.8 11.8 9.8 31.1-4.3 40.3l-133.4 86.9c-16.7 10.8-38.4-1.3-38.4-21.3V182.2zm39.4 469.2l133.4 86.9c14.1 9.2 15.7 28.5 3.9 40.3-47.2 47.9-108.2 81.7-176.5 96.4-17.1 3.6-32.8-9.2-32.8-26.6v-175.8c0-20.3 21.6-32.5 39-21.6l33.2-.7-.2 1.1zm154.1-185.8L549.2 515.7c-19.3 6.2-37.7-8.9-37.7-29.2v-101.7c0-20.3 18.4-35.4 37.7-29.2l134.1 50.1c21.6 6.9 21.6 39 0 46.6v14z"/>
+            </svg>
+            <div class="badge-text">
+              <span class="badge-platform">Yelp</span>
+              <span class="badge-stars">★★★★★ <strong>5.0</strong></span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: map — same height as call card -->
+    <div class="col-right">
+      <div class="card map-card">
+        <iframe
+          src="https://maps.google.com/maps?q=KevFix+5212+Colfax+Ave+North+Hollywood+CA+91601&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="KevFix on Google Maps">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- LEFT: address + hours -->
+    <div class="col-info-left">
+      <div class="card info-card-full">
+        <a class="info-row" href="https://www.google.com/maps/search/KevFix+5212+Colfax+Ave+North+Hollywood+CA+91601" target="_blank" rel="noopener">
+          <div class="info-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div class="info-content">
+            <div class="info-label">Address</div>
+            <div class="info-value">5212 Colfax Ave, North Hollywood, CA 91601</div>
+          </div>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+        <div class="info-row" style="border-bottom:none">
+          <div class="info-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div class="info-content">
+            <div class="info-label" style="display:flex;align-items:center;gap:8px;">
+              Hours <span id="openBadge"></span>
+            </div>
+            <div class="hours-grid">
+              <span class="hours-day">Mon – Sat</span><span class="hours-time">10:00 AM – 7:00 PM</span>
+              <span class="hours-day">Sunday</span><span class="hours-time closed">Closed</span>
+            </div>
+            <p id="opensMsg" style="font-size:.78rem;color:var(--gray-500);margin-top:5px;display:none;"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: trust pillars -->
+    <div class="col-info-right">
+      <div class="trust-row">
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
+          <div>
+            <p class="trust-title">Best Prices in the Region</p>
+            <p class="trust-desc">Our customers say we're the most affordable repair shop around.</p>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <p class="trust-title">Most Repairs Under 1 Hour</p>
+            <p class="trust-desc">We work fast so you're not waiting around all day.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FULL WIDTH: services -->
+    <div class="col-full">
+      <div class="card services-card">
+        <div class="services-header">
+          <span class="services-title">What We Fix</span>
+          <span class="services-sub">Walk-ins welcome · Most repairs same day</span>
+        </div>
+        <div class="services-list" id="servicesList">
+          <!-- populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- FULL WIDTH: review slider -->
+    <div class="col-full">
+      <div class="card">
+
+        <div class="reviews-header">
+          <div class="reviews-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Customer Reviews
+          </div>
+          <div class="rating-pill">
+            <span class="stars">★★★★★</span>
+            <span class="rating-num">5.0</span>
+            <span class="rating-total">· 100+ reviews</span>
+          </div>
+        </div>
+
+        <div style="text-align:center;padding:10px 28px 0;border-top:1px solid var(--gray-100);">
+          <span class="satisfaction-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            100% Satisfaction Guaranteed
+          </span>
+        </div>
+
+        <div class="slider-wrap">
+          <div class="slider-track" id="slider">
+
+            <div class="review-card">
+              <div class="review-header"><span class="review-stars">★★★★★</span><span class="review-source yelp-badge">Yelp</span></div>
+              <p class="review-body">"Came in to get my iPhone 14 fixed — in and out in 10 minutes. Great service, fast and friendly!"</p>
+              <div class="reviewer"><div class="avatar">J</div><div><div class="reviewer-name">Jaydan M.</div></div></div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-header"><span class="review-stars">★★★★★</span><span class="review-source yelp-badge">Yelp</span></div>
+              <p class="review-body">"Fast, affordable, great service. No run around. Would recommend!"</p>
+              <div class="reviewer"><div class="avatar">P</div><div><div class="reviewer-name">Peter L.</div></div></div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-header"><span class="review-stars">★★★★★</span><span class="review-source yelp-badge">Yelp</span></div>
+              <p class="review-body">"Got my iPhone screen fixed here. It was really fast and the owner was nice enough to replace the screen when I had issues with it."</p>
+              <div class="reviewer"><div class="avatar">Z</div><div><div class="reviewer-name">Zenko K.</div></div></div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-header"><span class="review-stars">★★★★★</span><span class="review-source yelp-badge">Yelp</span></div>
+              <p class="review-body">"I highly recommend this business if you ever need your PS5 repaired. I walked in with a quoted price, and he honored it without any issues. The repair was completed in about 30 minutes!!"</p>
+              <div class="reviewer"><div class="avatar">K</div><div><div class="reviewer-name">Ketan J.</div></div></div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-header"><span class="review-stars">★★★★★</span><span class="review-source yelp-badge">Yelp</span></div>
+              <p class="review-body">"I'm not someone who usually writes reviews, but this shop absolutely deserves one. Kevin fixed my daughter's iPhone battery and it's been working like new ever since."</p>
+              <div class="reviewer"><div class="avatar">A</div><div><div class="reviewer-name">Ashley P.</div></div></div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-header"><span class="review-stars">★★★★★</span><span class="review-source yelp-badge">Yelp</span></div>
+              <p class="review-body">"Went in to get my charging port fixed and was hassle free! Fast and easy. Phone is working like new."</p>
+              <div class="reviewer"><div class="avatar">B</div><div><div class="reviewer-name">Benito C.</div></div></div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-header"><span class="review-stars">★★★★★</span><span class="review-source yelp-badge">Yelp</span></div>
+              <p class="review-body">"In and out within 30 min for iPhone 12 Pro Max screen and battery replacement. Competitive if not better pricing on all types of devices for the quality you get."</p>
+              <div class="reviewer"><div class="avatar">P</div><div><div class="reviewer-name">Piti P.</div></div></div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-header"><span class="review-stars">★★★★★</span><span class="review-source yelp-badge">Yelp</span></div>
+              <p class="review-body">"Very fast and nice! Kev was so kind and approachable. He had me out of there in less than 15-20 min. Best pricing around!"</p>
+              <div class="reviewer"><div class="avatar">J</div><div><div class="reviewer-name">Joshua H.</div></div></div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-header"><span class="review-stars">★★★★★</span><span class="review-source yelp-badge">Yelp</span></div>
+              <p class="review-body">"I took my iPhone 12 mini to have the port replaced and Kev did it in under 30 minutes. Quick and easy process to do business at KevFix."</p>
+              <div class="reviewer"><div class="avatar">R</div><div><div class="reviewer-name">Rob S.</div></div></div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-header"><span class="review-stars">★★★★★</span><span class="review-source yelp-badge">Yelp</span></div>
+              <p class="review-body">"Kev is one heck of a guy — honest, fair & always doing his best to make the customer experience special. He fixed my wife's iPad and she said how great he is as well!"</p>
+              <div class="reviewer"><div class="avatar">J</div><div><div class="reviewer-name">James M.</div></div></div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-header"><span class="review-stars">★★★★★</span><span class="review-source google-badge-pill">Google</span></div>
+              <p class="review-body">"KevFix is a true lifesaver and deserves more than 5 stars! While I was on vacation, my phone fell into a pool. He managed to fix it and recover my files. It was a pleasure working with him."</p>
+              <div class="reviewer"><div class="avatar">K</div><div><div class="reviewer-name">Katherine Iris</div></div></div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-header"><span class="review-stars">★★★★★</span><span class="review-source google-badge-pill">Google</span></div>
+              <p class="review-body">"Kevfix is by far the fastest and least expensive phone repair store in the San Fernando Valley! I checked with several other companies and none compare to Kevfix!"</p>
+              <div class="reviewer"><div class="avatar">T</div><div><div class="reviewer-name">Terry Bowles</div></div></div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-header"><span class="review-stars">★★★★★</span><span class="review-source google-badge-pill">Google</span></div>
+              <p class="review-body">"Been 4 times and every single time he's done an excellent job. Will continue to come back — no more Apple Store for me. Thanks Kev!"</p>
+              <div class="reviewer"><div class="avatar">L</div><div><div class="reviewer-name">Luxury by La'</div></div></div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-header"><span class="review-stars">★★★★★</span><span class="review-source google-badge-pill">Google</span></div>
+              <p class="review-body">"Fast, quick and transparent about everything! No hidden fees! Best in the San Fernando Valley!"</p>
+              <div class="reviewer"><div class="avatar">T</div><div><div class="reviewer-name">T Bow</div></div></div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-header"><span class="review-stars">★★★★★</span><span class="review-source google-badge-pill">Google</span></div>
+              <p class="review-body">"Kev fixed my son's PS5 HDMI the same day! Most stores I called said it would take 3 days, but he got it done fast and it worked perfectly. Highly recommend!"</p>
+              <div class="reviewer"><div class="avatar">J</div><div><div class="reviewer-name">jewelweave weave</div></div></div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-header"><span class="review-stars">★★★★★</span><span class="review-source google-badge-pill">Google</span></div>
+              <p class="review-body">"He got my phone fixed in under 20 mins!! Best deal in all of North Hollywood and Burbank. Thank you so much. Amazing customer service as well."</p>
+              <div class="reviewer"><div class="avatar">F</div><div><div class="reviewer-name">Frank Wilberding</div></div></div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-header"><span class="review-stars">★★★★★</span><span class="review-source google-badge-pill">Google</span></div>
+              <p class="review-body">"Kev was very nice and professional. Cheapest place around. He changed out my son's iPhone 11 in under 10 min. The place was extremely clean and presentable!"</p>
+              <div class="reviewer"><div class="avatar">H</div><div><div class="reviewer-name">Henry Macias</div></div></div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-header"><span class="review-stars">★★★★★</span><span class="review-source google-badge-pill">Google</span></div>
+              <p class="review-body">"I came in to get my iPhone screen replaced. He was done within minutes! No hidden fees or anything like that. Would def recommend — I'll be returning for sure."</p>
+              <div class="reviewer"><div class="avatar">A</div><div><div class="reviewer-name">Angel Solis</div></div></div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-header"><span class="review-stars">★★★★★</span><span class="review-source google-badge-pill">Google</span></div>
+              <p class="review-body">"I can't thank Kevin enough. He fixed my phone so quickly and was extremely knowledgeable! A heartfelt thank you for accommodating me last minute!"</p>
+              <div class="reviewer"><div class="avatar">V</div><div><div class="reviewer-name">Veronica Sigal</div></div></div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-header"><span class="review-stars">★★★★★</span><span class="review-source google-badge-pill">Google</span></div>
+              <p class="review-body">"I brought my iPad and it was in really bad shape. He fixed it perfectly and now it works like new. Super fast and professional service."</p>
+              <div class="reviewer"><div class="avatar">K</div><div><div class="reviewer-name">Kari Haz</div></div></div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="slider-nav">
+          <button class="nav-btn" id="prev" aria-label="Previous">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="slider-dots" id="dots"></div>
+          <button class="nav-btn" id="next" aria-label="Next">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FULL WIDTH: storefront photo -->
+    <div class="col-full">
+      <div class="card storefront-card">
+        <img src="photos/facb4c75-f436-4c82-b77a-d2199652943d.jpeg" alt="KevFix Phone Repair - 5212 Colfax Ave, North Hollywood" />
+      </div>
+    </div>
+
+    <!-- FULL WIDTH: photo gallery -->
+    <div class="col-full">
+      <div class="card">
+        <div class="gallery-header">
+          <span class="gallery-title">Our Shop</span>
+          <a class="gallery-more" href="https://www.google.com/maps/search/KevFix+5212+Colfax+Ave+North+Hollywood+CA+91601" target="_blank" rel="noopener">See all on Google</a>
+        </div>
+        <div class="gallery-grid" id="galleryGrid">
+          <!-- populated by JS -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- FIRST VISIT POPUP -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup-card" id="popupCard">
+    <button class="popup-close" id="popupClose" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="popup-icon">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00a8e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+    </div>
+    <h2 class="popup-title">First Repair Special!</h2>
+    <p class="popup-body">Drop your device in and <strong>mention this when you arrive</strong> — we'll hook you up with a special discount or gift on your first repair.</p>
+    <p class="popup-note">Walk-ins welcome · North Hollywood</p>
+    <a class="popup-cta" href="tel:+17472307800" data-track="call">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Call Now to Claim
+    </a>
+    <button class="popup-dismiss" id="popupDismiss">Maybe later</button>
+  </div>
+</div>
+
+<!-- DESKTOP FLOATING BUTTONS -->
+<div class="float-desktop">
+  <a class="float-desktop-btn float-desktop-call" href="tel:+17472307800" data-track="call">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+    Call Now
+  </a>
+  <a class="float-desktop-btn float-desktop-imsg" href="sms:+17472307800" data-track="imessage">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+    </svg>
+    iMessage
+  </a>
+</div>
+
+<div class="float-cta">
+  <div class="float-cta-inner">
+    <a class="float-btn float-call" href="tel:+17472307800" data-track="call">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+      </svg>
+      Call Now
+    </a>
+    <a class="float-btn float-imsg" href="sms:+17472307800" data-track="imessage">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+      </svg>
+      iMessage
+    </a>
+  </div>
+</div>
+
+<script>
+  const track = document.getElementById('slider');
+  const dotsEl = document.getElementById('dots');
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+  const cards = track.querySelectorAll('.review-card');
+  const count = cards.length;
+  let current = 0;
+
+  // build dots
+  cards.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Review ' + (i + 1));
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  });
+
+  function goTo(index) {
+    current = Math.max(0, Math.min(index, count - 1));
+    const card = cards[current];
+    track.scrollTo({ left: card.offsetLeft - track.offsetLeft - 28, behavior: 'smooth' });
+    dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === count - 1;
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  // sync dots on manual swipe/scroll
+  let scrollTimer;
+  track.addEventListener('scroll', () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      let closest = 0, minDist = Infinity;
+      cards.forEach((card, i) => {
+        const dist = Math.abs(card.offsetLeft - track.offsetLeft - 28 - track.scrollLeft);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+      if (closest !== current) {
+        current = closest;
+        dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+        prevBtn.disabled = current === 0;
+        nextBtn.disabled = current === count - 1;
+      }
+    }, 80);
+  });
+
+  goTo(0);
+
+  // ── ROTATING HEADLINE ──
+  const headlines = [
+    'Broken Screen?',
+    'Battery Dead?',
+    'iPad Not Working?',
+    'PS5 Not Turning On?',
+    'Xbox Damaged?',
+    'Water Damage?',
+    'Charging Issues?',
+    'Data Lost?',
+    'Samsung Cracked?',
+  ];
+  const rhEl = document.getElementById('rhText');
+  let rhIndex = 0;
+
+  function rotateHeadline() {
+    rhEl.classList.add('fade-out');
+    setTimeout(() => {
+      rhIndex = (rhIndex + 1) % headlines.length;
+      rhEl.textContent = headlines[rhIndex];
+      rhEl.classList.remove('fade-out');
+    }, 380);
+  }
+
+  rhEl.classList.add('fade-in');
+  setInterval(rotateHeadline, 2600);
+
+  // ── OPEN / CLOSED BADGE ──
+  (function() {
+    const badge   = document.getElementById('openBadge');
+    const opensMsg = document.getElementById('opensMsg');
+    const now     = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+    const day     = now.getDay(); // 0=Sun,1=Mon...6=Sat
+    const hour    = now.getHours();
+    const minute  = now.getMinutes();
+    const mins    = hour * 60 + minute;
+    const open    = 10 * 60;   // 10:00 AM
+    const close   = 19 * 60;   // 7:00 PM
+    const isOpen  = day >= 1 && day <= 6 && mins >= open && mins < close;
+
+    const badgeHtml = isOpen
+      ? `<span class="open-badge open"><span class="dot"></span>Open Now</span>`
+      : `<span class="open-badge closed"><span class="dot"></span>Closed</span>`;
+    badge.innerHTML = badgeHtml;
+    document.getElementById('openBadgeCard').innerHTML = badgeHtml;
+
+    if (!isOpen) {
+      // figure out next opening day
+      let nextDay = day;
+      let daysAhead = 0;
+      do {
+        daysAhead++;
+        nextDay = (day + daysAhead) % 7;
+      } while (nextDay === 0); // skip Sunday
+      const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+      const label = daysAhead === 1 ? 'tomorrow' : dayNames[nextDay];
+      opensMsg.textContent = `Opens ${label} at 10:00 AM`;
+      opensMsg.style.display = 'block';
+    }
+  })();
+
+  // ── SCROLL-TRIGGERED POPUP (70% of page) ──
+  (function() {
+    const key = 'kf_popup_seen';
+    if (sessionStorage.getItem(key)) return; // once per session
+
+    const overlay  = document.getElementById('popupOverlay');
+    const closeBtn = document.getElementById('popupClose');
+    const dismissBtn = document.getElementById('popupDismiss');
+    let triggered = false;
+
+    function showPopup() {
+      if (triggered) return;
+      triggered = true;
+      overlay.classList.add('show');
+    }
+
+    function closePopup() {
+      overlay.classList.remove('show');
+      sessionStorage.setItem(key, '1');
+    }
+
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY + window.innerHeight;
+      const total = document.body.scrollHeight;
+      if (scrolled / total >= 0.70) showPopup();
+    }, { passive: true });
+
+    closeBtn.addEventListener('click', closePopup);
+    dismissBtn.addEventListener('click', closePopup);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closePopup(); });
+  })();
+
+  // ── SERVICES ──
+  const checkSvg = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+  fetch('/api/services').then(r => r.json()).then(data => {
+    const list = document.getElementById('servicesList');
+    if (!list) return;
+    const visible = (data.services || []).filter(s => s.visible);
+    list.innerHTML = visible.map(s =>
+      `<div class="service-item">${checkSvg}${s.name}</div>`
+    ).join('') + `<div class="service-item service-more">& much more — if it's broken, bring it in!</div>`;
+  }).catch(() => {});
+
+  // ── GALLERY ──
+  fetch('/api/photos').then(r => r.json()).then(data => {
+    const grid = document.getElementById('galleryGrid');
+    if (!grid) return;
+    const visible = (data.photos || []).filter(p => p.visible);
+    grid.innerHTML = visible.map(p =>
+      `<img src="photos/${p.file}" alt="${p.alt}" loading="lazy" />`
+    ).join('');
+  }).catch(() => {});
+
+  // ── CLICK TRACKING ──
+  document.querySelectorAll('[data-track]').forEach(el => {
+    el.addEventListener('click', () => {
+      const event = el.getAttribute('data-track');
+      fetch(`/api/track?event=${event}`, { method: 'POST' }).catch(() => {});
+      // Google Ads conversion — only on call
+      if (event === 'call' && typeof gtag !== 'undefined') {
+        gtag('event', 'conversion', { send_to: 'AW-18200564951/uCxQCIv34bccENep2uZD' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
